@@ -1,0 +1,570 @@
+<?php
+
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Application;
+use App\Models\Item;
+use App\Models\Sale;
+use App\Services\SaleService;
+use Cart;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Route;
+use DataTables;
+use App\Models\Customer;
+
+use Salla\ZATCA\GenerateQrCode;
+use Salla\ZATCA\Tags\InvoiceDate;
+use Salla\ZATCA\Tags\InvoiceTaxAmount;
+use Salla\ZATCA\Tags\InvoiceTotalAmount;
+use Salla\ZATCA\Tags\Seller;
+use Salla\ZATCA\Tags\TaxNumber;
+
+
+class SaleController extends Controller {
+
+    /** Add Cart Item */
+    public function addCartSaleItem(Request $request) {
+
+        if ($request->ajax()) {
+
+            $user_id      = $this->userId();
+            $easy_sale_id = $request->easy_sale_id;
+
+            $item = Item::whereHas('easy_sale_item', function ($query) use ($easy_sale_id) {
+                $query->where('id', $easy_sale_id);
+            })->first();
+
+            if ($item) {
+                $cart_flag = 0;
+
+                $previous_cart = Cart::session($this->userId())->getContent();
+
+                if (!$previous_cart->isEmpty()) {
+
+                    foreach ($previous_cart as $v_item) {
+
+                        if ($v_item->id == $item->id) {
+
+                            Cart::session($this->userId())->update($item->id, [
+                                'quantity' => [
+                                    'relative' => false,
+                                    'value'    => 1 + $v_item->quantity,
+                                ],
+                            ]);
+                            $cart_flag = 1;
+                        }
+
+                    }
+
+                }
+
+                if ($cart_flag == 0) {
+                    \Cart::session($this->userId())->add([
+                        'id'              => $item->id,
+                        'name'            => $item->name,
+                        'price'           => $item->price,
+                        'quantity'        => 1,
+                        'attributes'      => [
+
+                        ],
+                        'associatedModel' => $item,
+                    ]);
+                }
+
+            }
+
+            $cart      = \Cart::session($this->userId())->getContent()->sortBy('id');
+            $totalItem = \Cart::session($this->userId())->getTotalQuantity();
+            $getTotal  = \Cart::session($this->userId())->getTotal();
+
+            $data = [
+                'cart'      => $cart,
+                'totalItem' => $totalItem,
+                'getTotal'  => $getTotal,
+                'user_id'   => $user_id,
+            ];
+
+            return view('admin.sale.saleCartItem', $data);
+        }
+
+    }
+    
+    /** Add Cart Item via barcode */
+    public function addCartSaleItemBarcode(Request $request) {
+
+        if ($request->ajax()) {
+
+            $user_id      = $this->userId();
+            $code = $request->bar_code;
+
+            $item = Item::where('code',$code)->first();
+            
+            if ($item) {
+                $cart_flag = 0;
+
+                $previous_cart = Cart::session($this->userId())->getContent();
+
+                if (!$previous_cart->isEmpty()) {
+
+                    foreach ($previous_cart as $v_item) {
+
+                        if ($v_item->id == $item->id) {
+
+                            Cart::session($this->userId())->update($item->id, [
+                                'quantity' => [
+                                    'relative' => false,
+                                    'value'    => 1 + $v_item->quantity,
+                                ],
+                            ]);
+                            $cart_flag = 1;
+                        }
+
+                    }
+
+                }
+
+                if ($cart_flag == 0) {
+                    \Cart::session($this->userId())->add([
+                        'id'              => $item->id,
+                        'name'            => $item->name,
+                        'price'           => $item->price,
+                        'quantity'        => 1,
+                        'attributes'      => [
+
+                        ],
+                        'associatedModel' => $item,
+                    ]);
+                }
+
+            }
+
+            $cart      = \Cart::session($this->userId())->getContent()->sortBy('id');
+            $totalItem = \Cart::session($this->userId())->getTotalQuantity();
+            $getTotal  = \Cart::session($this->userId())->getTotal();
+
+            $data = [
+                'cart'      => $cart,
+                'totalItem' => $totalItem,
+                'getTotal'  => $getTotal,
+                'user_id'   => $user_id,
+            ];
+
+            return view('admin.sale.saleCartItem', $data);
+        }
+
+    }
+
+    /** Add Other Cart Item */
+    public function addCartOtherSaleItem(Request $request) {
+
+        if ($request->ajax()) {
+
+            $user_id   = $this->userId();
+            $random_id = "other" . random_int(0, 9999);
+
+            \Cart::session($this->userId())->add([
+                'id'              => $random_id,
+                'name'            => "other_item",
+                'price'           => 0,
+                'quantity'        => 1,
+                'attributes'      => [
+                    'name' => '',
+                ],
+                'associatedModel' => [],
+            ]);
+
+            $cart      = \Cart::session($this->userId())->getContent()->sortBy('id');
+            $totalItem = \Cart::session($this->userId())->getTotalQuantity();
+            $getTotal  = \Cart::session($this->userId())->getTotal();
+
+            $data = [
+                'cart'      => $cart,
+                'totalItem' => $totalItem,
+                'getTotal'  => $getTotal,
+                'user_id'   => $user_id,
+            ];
+
+            return view('admin.sale.saleCartItem', $data);
+        }
+
+    }
+
+    /** Remove Cart Item*/
+    public function removeCartSaleItem(Request $request) {
+
+        if ($request->ajax()) {
+            $user_id = $this->userId();
+            $item_id = $request->item_id;
+
+            Cart::session($this->userId())->remove($item_id);
+
+            $cart      = Cart::session($this->userId())->getContent()->sortBy('id');
+            $totalItem = Cart::session($this->userId())->getTotalQuantity();
+            $getTotal  = Cart::session($this->userId())->getTotal();
+
+            $data = [
+                'cart'      => $cart,
+                'totalItem' => $totalItem,
+                'getTotal'  => $getTotal,
+                'user_id'   => $user_id,
+            ];
+
+            return view('admin.sale.saleCartItem', $data);
+        }
+
+    }
+
+    /** Update Other Item Name */
+    public function updateCartSaleItemName(Request $request) {
+
+        if ($request->ajax()) {
+            $user_id   = $this->userId();
+            $item_id   = $request->item_id;
+            $item_name = $request->item_name;
+
+            Cart::session($user_id)->update($item_id, [
+                'attributes' => [
+                    'name' => $item_name,
+                ],
+            ]);
+
+            $cart      = Cart::session($this->userId())->getContent()->sortBy('id');
+            $totalItem = Cart::session($this->userId())->getTotalQuantity();
+            $getTotal  = Cart::session($this->userId())->getTotal();
+
+            $data = [
+                'cart'      => $cart,
+                'totalItem' => $totalItem,
+                'getTotal'  => $getTotal,
+                'user_id'   => $user_id,
+            ];
+
+            return view('admin.sale.saleCartItem', $data);
+        }
+
+    }
+
+    /** Update Other Item Price */
+    public function updateCartSaleItemPrice(Request $request) {
+
+        if ($request->ajax()) {
+            $user_id    = $this->userId();
+            $item_id    = $request->item_id;
+            $item_price = $request->item_price;
+
+            Cart::session($user_id)->update($item_id, [
+                'price' => $item_price,
+            ]);
+
+            $cart      = Cart::session($this->userId())->getContent()->sortBy('id');
+            $totalItem = Cart::session($this->userId())->getTotalQuantity();
+            $getTotal  = Cart::session($this->userId())->getTotal();
+
+            $data = [
+                'cart'      => $cart,
+                'totalItem' => $totalItem,
+                'getTotal'  => $getTotal,
+                'user_id'   => $user_id,
+            ];
+
+            return view('admin.sale.saleCartItem', $data);
+        }
+
+    }
+
+    /** Update Other Item Price */
+    public function updateCartSaleItemQuantity(Request $request) {
+
+        if ($request->ajax()) {
+            $user_id       = $this->userId();
+            $item_id       = $request->item_id;
+            $item_quantity = $request->item_quantity;
+
+            Cart::session($user_id)->update($item_id, [
+                'quantity' => [
+                    'relative' => false,
+                    'value'    => $item_quantity,
+                ],
+            ]);
+
+            $cart      = Cart::session($this->userId())->getContent()->sortBy('id');
+            $totalItem = Cart::session($this->userId())->getTotalQuantity();
+            $getTotal  = Cart::session($this->userId())->getTotal();
+
+            $data = [
+                'cart'      => $cart,
+                'totalItem' => $totalItem,
+                'getTotal'  => $getTotal,
+                'user_id'   => $user_id,
+            ];
+
+            return view('admin.sale.saleCartItem', $data);
+        }
+
+    }
+
+
+    public function store(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'bill_type'        => 'sometimes',
+            'bill_no'          => 'sometimes',
+            'bill_date'        => 'required',
+            'subtotal_amount'  => 'required',
+            'total_item'       => 'required',
+            'discount_amount'  => 'required',
+            'total_tax_amount' => 'required',
+            'total_amount'     => 'required',
+            'customer_id'      => 'sometimes',
+            'note'             => 'sometimes',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput()->withErrors($validator);
+        }
+
+        \DB::beginTransaction();
+        try {
+
+            $admin_id = auth()->guard('admin')->user()->id;
+
+            /**
+             * Sale Master Data Set
+             */
+            $sale_data = [
+                'date'             => $request->input('bill_date'),
+                'time'             => date('H:i:s'),
+                'bill_no'          => $this->returnUniqueSaleBillNo(),
+                'bill_type'        => $request->input('bill_type'),
+                'customer_id'      => $request->input('customer_id'),
+                'note'             => $request->input('note'),
+                'total_quantity'   => $request->input('total_item'),
+                'grand_amount'     => $request->input('subtotal_amount'),
+                'discount_amount'  => $request->input('discount_amount'),
+                'tax_amount'       => $request->input('total_tax_amount'),
+                'final_amount'     => $request->input('total_amount'),
+                'created_admin_id' => $admin_id,
+            ];
+
+
+            $sale = Sale::create($sale_data);
+
+            if ($sale) {
+
+                /**
+                 * Sale Details
+                 */
+                $data = [
+                    'sale'     => $sale,
+                    'admin_id' => $admin_id,
+                ];
+                (new SaleService)->insert_sale_details($data);
+
+                \DB::commit();
+                $this->setMessage('Sale  Successfully', 'success');
+
+                return redirect()->route('admin.sale.salePrint', $sale->id);
+
+                // return redirect()->route('admin.home');
+            } else {
+                $this->setMessage('Sale  Failed', 'danger');
+                return redirect()->back()->withInput();
+            }
+
+        } catch (\Exception $e) {
+            \DB::rollback();
+            $this->setMessage('Database Error', 'danger');
+            return redirect()->back()->withInput();
+        }
+
+    }
+
+
+    public function salePrint(Request $request, Sale $sale, $type = 0) {
+        $sale->load([
+            'customer',
+            'sale_details.item',
+            'created_admin',
+        ]);
+        $application = Application::first();
+
+        $generatedString = GenerateQrCode::fromArray([
+            new Seller($application->name), // seller name
+            new TaxNumber($application->name), // seller tax number
+            new InvoiceDate(date('Y-m-d', strtotime($sale->date)).date('H:i:s', strtotime($sale->time))), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
+            // new InvoiceDate('2021-07-12T14:25:09Z'), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
+            new InvoiceTotalAmount($sale->grand_amount), // invoice total amount
+            new InvoiceTaxAmount($sale->tax_amount) // invoice tax amount
+            // TODO :: Support others tags
+        ])->toBase64();
+
+
+
+        $page_title = 'Print Booking Parcel';
+        $previous_route = url()->previous();
+
+        return view('admin.sale.salePrint', compact('sale', 'page_title', 'previous_route','type', 'generatedString'));
+    }
+
+
+
+    public function printPreview(Request $request) {
+
+        $application = Application::first();
+
+        $generatedString = GenerateQrCode::fromArray([
+            new Seller($application->name), // seller name
+            new TaxNumber($application->name), // seller tax number
+            new InvoiceDate(date('Y-m-d H:i:s')), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
+            // new InvoiceDate('2021-07-12T14:25:09Z'), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
+            new InvoiceTotalAmount($request->input('total_amount')), // invoice total amount
+            new InvoiceTaxAmount($request->input('total_tax_amount')) // invoice tax amount
+            // TODO :: Support others tags
+        ])->toBase64();
+
+
+        $cart      = \Cart::session($this->userId())->getContent()->sortBy('id');
+        $totalItem = \Cart::session($this->userId())->getTotalQuantity();
+        $getTotal  = \Cart::session($this->userId())->getTotal();
+        $user_id   = $this->userId();
+
+        $data = [
+            'subtotal_amount'   => $request->input('subtotal_amount'),
+            'total_item'        => $request->input('total_item'),
+            'discount_amount'   => $request->input('discount_amount'),
+            'total_tax_amount'        => $request->input('total_tax_amount'),
+            'total_amount'      => $request->input('total_amount'),
+            'cart'      => $cart,
+            'totalItem' => $totalItem,
+            'getTotal'  => $getTotal,
+            'user_id'   => $user_id,
+            'generatedString'   => $generatedString,
+        ];
+
+        return view('admin.sale.salePrintPreview', $data);
+    }
+
+    public function printPreviewPrint(Request $request) {
+
+        $application = Application::first();
+
+        $generatedString = GenerateQrCode::fromArray([
+            new Seller($application->name), // seller name
+            new TaxNumber($application->name), // seller tax number
+            new InvoiceDate(date('Y-m-d H:i:s')), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
+            // new InvoiceDate('2021-07-12T14:25:09Z'), // invoice date as Zulu ISO8601 @see https://en.wikipedia.org/wiki/ISO_8601
+            new InvoiceTotalAmount($request->input('total_amount')), // invoice total amount
+            new InvoiceTaxAmount($request->input('total_tax_amount')) // invoice tax amount
+            // TODO :: Support others tags
+        ])->toBase64();
+
+        $cart      = \Cart::session($this->userId())->getContent()->sortBy('id');
+        $totalItem = \Cart::session($this->userId())->getTotalQuantity();
+        $getTotal  = \Cart::session($this->userId())->getTotal();
+        $user_id      = $this->userId();
+
+        $data = [
+            'subtotal_amount'   => $request->input('subtotal_amount'),
+            'total_item'        => $request->input('total_item'),
+            'discount_amount'   => $request->input('discount_amount'),
+            'total_tax_amount'        => $request->input('total_tax_amount'),
+            'total_amount'      => $request->input('total_amount'),
+            'cart'              => $cart,
+            'totalItem'         => $totalItem,
+            'getTotal'          => $getTotal,
+            'user_id'           => $user_id,
+            'generatedString'   => $generatedString,
+        ];
+
+        return view('admin.sale.salePrintPreviewPrint', $data);
+    }
+
+
+    public function list(Request $request) {
+        $data               = [];
+
+        $data['main_menu']  = 'booking';
+        $data['child_menu'] = 'bookingParcellist';
+        $data['page_title'] = 'Booking Parcel List';
+        $data['customers']  = Customer::active()->get();
+
+        return view('admin.sale.saleList', $data);
+    }
+
+
+    public function getList(Request $request) {
+
+        $model = Sale::with(['sale_details'])
+            ->where(function ($query) use ($request) {
+                $customer_id    = $request->input('customer_id');
+                $from_date      = $request->input('from_date');
+                $to_date        = $request->input('to_date');
+
+                if ($request->has('customer_id') && !is_null($customer_id) && $customer_id != '') {
+                    $query->where('customer_id',  $customer_id);
+                }
+
+                if ($request->has('from_date') && !is_null($from_date) && $from_date != '') {
+                    $query->where('date', '>=', $from_date);
+                }
+                if ($request->has('to_date') && !is_null($to_date) && $to_date != '') {
+                    $query->where('date', '<=', $to_date);
+                }
+            })
+            ->orderBy('id', 'desc')
+            ->select();
+
+        return DataTables::of($model)
+            ->addIndexColumn()
+
+            ->editColumn('date', function ($data) {
+                return date('d-m-Y', strtotime($data->date));
+            })
+            ->editColumn('total_quantity', function ($data) {
+                return number_format($data->total_quantity,2);
+            })
+            ->editColumn('grand_amount', function ($data) {
+                return number_format($data->grand_amount,2);
+            })
+            ->editColumn('discount_amount', function ($data) {
+                return number_format($data->discount_amount,2);
+            })
+            ->editColumn('tax_amount', function ($data) {
+                return number_format($data->tax_amount,2);
+            })
+            ->editColumn('final_amount', function ($data) {
+                return number_format($data->final_amount,2);
+            })
+            ->addColumn('action', function ($data) {
+                $button = '<a href="'.route('admin.sale.salePrint', [$data->id, 1]).'" class="btn btn-success btn-sm" title="Print Sale Item"
+                        target="_blank">
+                    <i class="fas fa-print"></i>
+                    </a>';
+                $button .= '&nbsp; <button class="btn btn-secondary btn-sm view-modal" data-toggle="modal" data-target="#viewModal" booking_id="' . $data->id . '" >
+                    <i class="fa fa-eye"></i>
+                    </button>';
+                return $button;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
+    }
+
+
+
+    /** Protected Function */
+    protected function userId() {
+
+        if (auth()->guard('admin')->user()) {
+            $userId = auth()->guard('admin')->user()->id;
+        } else {
+            $userId = 0;
+        }
+
+        return $userId;
+    }
+
+}

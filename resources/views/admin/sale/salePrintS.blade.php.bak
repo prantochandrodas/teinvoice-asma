@@ -1,0 +1,270 @@
+@php
+    $QRCodeMessage = "
+        Company Name : $application->name,
+        Address : $application->address,
+        Mob : $application->contact_number,
+        Date : $sale->date,
+    ";
+@endphp
+<html>
+    <head>
+        <title>{{ isset($page_title) ?  $page_title."  " : ''}}</title>
+        <link rel="icon" type="image/png" href="{{ asset('uploads/application/') . '/' . session()->get('company_photo') }}">
+        <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin_css/adminlte.min.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/admin_css/style.css') }}">
+        @stack('style_css')
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+        <script type="text/javascript">
+
+
+            function printPage(divName) {
+                var printContents       = document.getElementById(divName).innerHTML;
+                var originalContents    = document.body.innerHTML;
+                document.body.innerHTML = printContents;
+                // document.body.style.marginTop="-45px";
+
+                var button = document.getElementById('print');
+               // button.style.display = 'none'; //or
+                //button.style.visibility = 'hidden';
+                window.print();
+                document.body.innerHTML = originalContents;
+                @if ($type)
+                    window.close();
+                @else
+                    window.location.href = '{{ $previous_route }}';
+                @endif
+            }
+
+            function cancelPage() {
+                @if ($type)
+                    window.close();
+                @else
+                    window.location.href = '{{ $previous_route }}';
+                @endif
+            }
+        </script>
+
+        <style>
+
+            *{
+                -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+                color-adjust: exact !important;                 /*Firefox*/
+            }
+
+            @media print {
+                * {
+                    -webkit-print-color-adjust: exact;
+                }
+            }
+
+            .col-print-1 {width:8%;  float:left;}
+            .col-print-2 {width:16%; float:left;}
+            .col-print-3 {width:25%; float:left;}
+            .col-print-4 {width:33%; float:left;}
+            .col-print-5 {width:42%; float:left;}
+            .col-print-6 {width:50%; float:left;}
+            .col-print-7 {width:58%; float:left;}
+            .col-print-8 {width:66%; float:left;}
+            .col-print-9 {width:75%; float:left;}
+            .col-print-10{width:83%; float:left;}
+            .col-print-11{width:92%; float:left;}
+            .col-print-12{width:100%; float:left;}
+
+            @media print {
+                *{
+                    -webkit-print-color-adjust: exact !important;   /* Chrome, Safari */
+                    color-adjust: exact !important;                 /*Firefox*/
+                }
+                .water_mark {
+                    position: relative;
+                }
+
+                .water_mark::before{
+                    z-index: 999;
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    opacity: 0.15;
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    background-size: 40% 100px;
+                }
+            }
+
+            .tables{
+                border: 2px solid black;
+            }
+            .tables thead,  .tables thead th, .tables thead td, .table-bordered td, .table-bordered th{
+                border: 1px solid black;
+            }
+
+
+        </style>
+
+    </head>
+
+    <body>
+
+        {{-- <div id="print" class="row" style="padding-bottom: 30px; margin-bottom: 30px;">
+            <div class="col-md-12">
+                <span class="float-right">
+                    <button class="btn btn-sm btn-info" onclick="printPage('printArea')">Print</button>
+                    <button class="btn btn-sm btn-danger" onclick="cancelPage()">Cancel</button>
+                </span>
+            </div>
+        </div> --}}
+
+        <div id="printArea">
+            <table width="100%" style="width: 100%; " >
+                <thead>
+                    <tr>
+                        <td colspan="4" class="text-center text-bold">
+						
+				    @if(!empty($application->photo))
+                        <img src="{{ asset('uploads/application/') . '/' . $application->photo }}"
+                        alt="{{ $application->name ?? config('app.name') }}" style="height: 160px; width: 100%"
+                        >
+                    @else
+                        <b>{{ $application->name ?? config('app.name') }}</b>
+                    @endif
+					</td>
+                    </tr>
+					<tr>
+					<td colspan="1" class="text-left text-bold">
+                           <b> SL No: {{ $sale->id }}</b><br>
+                          
+							
+                            <b> Bill No: {{ $sale->bill_no }}</b><br>
+							 <b> Vat: {{ $application->vat_number }}</b><br>
+                           
+							
+                            
+                        </td>
+						<td colspan="2" class="text-center text-bold">
+                           <b> فاتورة نقدية / دائنة</b><br>
+                          
+							
+                            <b> Cash/ Credit invoice</b><br>
+                            
+                        </td>
+						
+                        <td colspan="1" class="text-right text-bold">
+                          <b>Date & Time: {{date('d-m-Y')}}  {{date('H:i:sa')}} </b><br>
+                        </td>
+                    </tr>
+                    
+                        <tr>
+					<td colspan="1" style="text-align: left;">
+					    Mr./ Messrs
+					</td>
+					       @if ($sale->customer)
+                            <td colspan="2" style="text-align: center;">
+                                {{ __('message.customer') }} : {{ $sale->customer->name }} <br>
+                            </td>
+							@endif
+					<td colspan="1" style="text-align: right;">
+					    السيد / السادة
+					</td>	
+                        </tr>
+                    
+                </thead>
+                <tbody style="width: 100%;" >
+                    <tr style="border: solid 2px black;">
+                        <th style="width: 20%;"> {{ __('message.amount') }}<br></th>
+                        <th style="width: 20%;"> {{ __('message.price') }}  </th>
+                        <th style="width: 10%;"> {{ __('message.quantity') }}</th>
+                        <th style="width: 50%;"> {{ __('message.item') }} </th>
+                    </tr>
+                    @foreach ($sale->sale_details as $sale_detail)
+                        <tr  style="border-bottom: solid 2px black;">
+                            <td >
+                                {{ number_format($sale_detail->amount,2) }}
+                            </td>
+                            <td >
+                                {{ number_format($sale_detail->price,2) }}
+                            </td>
+                            <td >
+                                {{ floatval($sale_detail->quantity) }}
+                            </td>
+                            <td >
+                                @if($sale_detail->item && $sale_detail->item->name)
+                                    {{ $sale_detail->item->name }}
+                                @else
+                                    {{ $sale_detail->item_name }}
+                                @endif
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th colspan="4">
+                            <table  style="width: 100%;" >
+                                <tbody>
+                                    <tr style="border-bottom: solid 2px black">
+                                        <th style="width: 50%; text-align:left">{{ number_format($sale->grand_amount,2) }}</th>
+                                        <th style="width: 50%; text-align:right"> {{ __('message.grand') }}   </th>
+                                    </tr>
+                                    <tr style="border-bottom: solid 2px black">
+                                        <th style="width: 50%; text-align:left">{{ number_format($sale->discount_amount,2) }}</th>
+                                        <th style="width: 50%; text-align:right"> {{ __('message.discount') }} </th>
+                                    </tr>
+                                    <tr style="border-bottom: solid 2px black">
+                                        <th style="width: 50%; text-align:left">{{ number_format($sale->tax_amount,2) }}</th>
+                                        <th style="width: 50%; text-align:right"> {{ __('message.tax') }} </th>
+                                    </tr>
+                                    <tr style="border-bottom: solid 2px black">
+                                        <th style="width: 50%; text-align:left">{{ number_format($sale->final_amount,2) }}</th>
+                                        <th style="width: 50%; text-align:right"> {{ __('message.final') }}  </th>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </th>
+
+                    </tr>
+					<tr>
+					<th colspan="4">
+                            <div style="margin-top: 30px;">
+                                <img src="data:image/png; base64,{{ \DNS2D::getBarcodePNG($generatedString, 'QRCODE') }}"
+                                alt="barcode" style="height:100px; width:100px;"/>
+                            </div>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td colspan="4" >
+                             <br>
+                            <b>Thanks For Visiting {{ $application->name }} <br/>
+                            Developed By {{ $application->develop_by }}  </b>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+
+
+                <div class="col-md-12" style="padding-left: 20px; padding-right: 30px;">
+                    <div class="row text-center text-bold" style="border-bottom: 2px solid black; margin-top:30px">
+                        <div class="col-print-6">
+
+                        </div>
+                        <div class="col-print-6">
+
+                        </div>
+                    </div>
+                    <div class="col-print-12 text-center">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+
+<style>
+    .table-style td, .table-style th {
+        padding: .1rem !important;
+    }
+</style>

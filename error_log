@@ -1,0 +1,2 @@
+[17-Jan-2022 13:14:59 UTC] PHP Fatal error:  Composer detected issues in your platform: Your Composer dependencies require a PHP version ">= 7.4.0". You are running 7.3.33. in /home/stitbd/public_html/ss/vendor/composer/platform_check.php on line 24
+[07-Nov-2023 23:19:53 Asia/Riyadh] PHP Fatal error:  [snuffleupagus][disabled_function] Aborted execution on call of the function 'include' in /home/teinvoice/public_html/861.teinvoicesoftware.com/vendor/symfony/error-handler/ErrorRenderer/HtmlErrorRenderer.php on line 353
