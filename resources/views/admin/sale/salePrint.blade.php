@@ -453,8 +453,8 @@
         <h2><b> TAX INVOICE :فاتورة ضريبية مبسطة نقدا </b></h2>
         <div class="row" style="width: 100%; margin-left: auto; margin-right: auto;">
             <div class=" col border border-dark" style="border-left: 0 !important;">
-                <p><b>Branch Name: TEID</b></p>
-                <p><b>SL NO: {{$sale->id}}</b></p>
+                <p><b>Branch Name: {{$sale->branch ? $sale->branch->name : ''}}</b></p>
+                {{-- <p><b>SL NO: {{$sale->id}}</b></p> --}}
                 <p><b>Bill No: {{$sale->bill_no}}</b></p>
             </div>
             @if ($sale->customer)

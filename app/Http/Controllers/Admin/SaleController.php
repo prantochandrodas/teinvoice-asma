@@ -1,13 +1,14 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
 use App\Models\Application;
 use App\Models\Branch;
 use App\Models\Customer;
 use App\Models\Item;
+use App\Models\Payment;
 use App\Models\Sale;
 use App\Services\SaleService;
 use Cart;
@@ -366,6 +367,8 @@ class SaleController extends Controller {
 
     public function store(Request $request) {
 
+
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'bill_type'        => 'sometimes',
             'bill_no'          => 'sometimes',
@@ -376,6 +379,7 @@ class SaleController extends Controller {
             'discount_amount'  => 'required',
             'total_tax_amount' => 'required',
             'total_amount'     => 'required',
+            'pay_amount'     => 'required',
             'customer_id'      => 'sometimes',
             'note'             => 'sometimes',
         ]);
@@ -392,6 +396,7 @@ class SaleController extends Controller {
             $customer_id     = $request->input('customer_id');
             $customer_name   = $request->input('customer_name');
             $customer_vat_no = $request->input('customer_vat_no');
+            $duePayment = $request->input('due_payment');
 
             if ($customer_id == '0' && !empty($customer_name) && !empty($customer_vat_no)) {
                 $customer_id = Customer::create([
@@ -400,8 +405,15 @@ class SaleController extends Controller {
                     'phone'            => $request->input('customer_phone'),
                     'vat_no'           => $request->input('customer_vat_no'),
                     'address'          => $request->input('customer_address'),
+                    'due_payment'      => $request->input('due_payment'),
                     'created_admin_id' => $admin_id,
                 ])->id;
+            }elseif($customer_id !== '0'){
+                $updateCustomer=Customer::find($customer_id);
+                $newDuePayment=$updateCustomer->due_payment + $duePayment;
+                $updateCustomer->update([
+                    'due_payment' => $newDuePayment
+                ]);
             }
 
             /**
@@ -418,6 +430,7 @@ class SaleController extends Controller {
                 'total_quantity'   => $request->input('total_item'),
                 'grand_amount'     => $request->input('subtotal_amount'),
                 'discount_amount'  => $request->input('discount_amount'),
+                'due_payment'      => $request->input('due_payment'),
                 'tax_amount'       => $request->input('total_tax_amount'),
                 'final_amount'     => $request->input('total_amount'),
                 'total_unit_cost'  => $request->input('total_unit_cost'),
@@ -425,9 +438,28 @@ class SaleController extends Controller {
                 'created_admin_id' => $admin_id,
             ];
 
+            
             $sale = Sale::create($sale_data);
 
-            if ($sale) {
+            
+            $ref = Payment::latest()->first();
+
+            if ($ref) {
+                $invoice_no = 'PAY_00' . $ref->id + 1;
+            } else {
+                $invoice_no = 'PAY_00';
+            }
+            $payment_data=[
+                'sale_id' => $sale->id,
+                'payment_type' => 1,
+                'voucher_number' => $invoice_no,
+                'pay_amount' => $request->input('pay_amount'),
+                'payment_date' => Carbon::today()->toDateString(),
+            ];
+             Payment::create($payment_data);
+           
+           
+             if ($sale) {
 
                 /**
                  * Sale Details
@@ -570,7 +602,7 @@ class SaleController extends Controller {
         $data['child_menu'] = 'bookingParcellist';
         $data['page_title'] = 'Sales  List';
         $data['customers']  = Customer::active()->get();
-        $data['branches']  = Branch::all();
+        $data['branches']  = Branch::where('active_status',1)->get();
 
         return view('admin.sale.saleList', $data);
     }
@@ -579,10 +611,17 @@ class SaleController extends Controller {
 
         $model = Sale::with(['sale_details'])
             ->where(function ($query) use ($request) {
+                $payment = $request->input('payment');
+                $branch = $request->input('branch_name');
                 $customer_id = $request->input('customer_id');
                 $from_date   = $request->input('from_date');
                 $to_date     = $request->input('to_date');
-
+                if($branch){
+                    $query->where('branch_id', $branch);
+                }
+                if($payment){
+                    $query->where('payment_type', $payment);
+                }
                 if ($request->has('customer_id') && !is_null($customer_id) && $customer_id != '') {
                     $query->where('customer_id', $customer_id);
                 }

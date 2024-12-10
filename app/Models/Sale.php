@@ -24,6 +24,7 @@ class Sale extends Model {
         'total_quantity',
         'grand_amount',
         'discount_amount',
+        'due_payment',
         'tax_amount',
         'final_amount',
         'total_unit_cost',
@@ -47,6 +48,10 @@ class Sale extends Model {
     }
 
 
+
+    public function branch() {
+        return $this->belongsTo(Branch::class);
+    }
 
     public function sale_details() {
         return $this->hasMany(SaleDetail::class);

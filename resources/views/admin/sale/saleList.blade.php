@@ -29,6 +29,19 @@
                             <h3 class="card-title"> Sale List </h3>
                             <div class="row input-daterange" style="margin-top: 40px">
                                 <div class="col-md-3">
+                                    <label for="payment">{{ __('Payment Type') }} </label>
+                                    <select  id="payment" class="form-control select2"
+                                        data-placeholder="Select a Branch"
+                                        data-tags="true"
+                                        data-allow-clear="true">
+                                        <option></option>
+                                        <option value="Cash">Cash</option>
+                                        <option value="Mada">Mada</option>
+                                        <option value="credit card"> Credit Card</option>
+                                        <option value="credit">credit</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-3">
                                     <label for="branch_name">{{ __('Branch Name') }} </label>
                                     <select  id="branch_name" class="form-control select2"
                                         data-placeholder="Select a Branch"
@@ -187,7 +200,7 @@
         window.onload = function() {
             load_data();
 
-            function load_data(customer_id='', from_date = '', to_date = ''){
+            function load_data(payment='', branch_name='',customer_id='', from_date = '', to_date = ''){
 
                 var table = $('#yajraDatatable').DataTable({
                     language : {
@@ -199,6 +212,8 @@
                     ajax: {
                         url:'{!!  route('admin.sale.getList') !!}',
                         data:{
+                            payment   : payment,
+                            branch_name   : branch_name,
                             customer_id   : customer_id,
                             from_date   : from_date,
                             to_date     : to_date,
@@ -268,17 +283,20 @@
             }
 
             $('#filter').click(function(){
+                var payment = $('#payment').val();
+                var branch_name = $('#branch_name option:selected').val();
                 var customer_id = $('#customer_id option:selected').val();
                 var from_date   = $('#from_date').val();
                 var to_date     = $('#to_date').val();
 
-
+                $('#payment').val(payment);
+                $('#branch_name').val(branch_name);
                 $('#print_customer_id').val(customer_id);
                 $('#print_from_date').val(from_date);
                 $('#print_to_date').val(to_date);
 
                 $('#yajraDatatable').DataTable().destroy();
-                load_data(customer_id, from_date, to_date);
+                load_data(payment,branch_name,customer_id, from_date, to_date);
             });
 
             $(document).on('click', '#refresh', function(){

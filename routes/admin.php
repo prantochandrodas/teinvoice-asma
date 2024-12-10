@@ -58,6 +58,8 @@ Route::group(['middleware' => ['admin', 'setLocalization'], 'prefix' => 'admin']
     Route::get('branch/edit/{id}', [BranchController::class, 'edit'])->name('branches.edit');
     Route::put('branch/update/{id}', [BranchController::class, 'update'])->name('branches.update');
 
+    Route::post('branch/updateStatus', [BranchController::class, 'updateStatus'] )->name('branches.updateStatus');
+
     /** Admin User */
     Route::get('admin/getAdmins', [App\Http\Controllers\Admin\AdminController::class, 'getAdmins'] )->name('admin.getAdmins');
     Route::post('admin/updateStatus', [App\Http\Controllers\Admin\AdminController::class, 'updateStatus'] )->name('admin.updateStatus');

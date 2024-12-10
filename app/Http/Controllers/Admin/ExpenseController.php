@@ -3,16 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Branch;
 use App\Models\Expense;
 use App\Models\ExpenseHead;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-
+use App\Models\Branch;
 class ExpenseController extends Controller
 {
 
-    public function index()
+   public function index()
     {
         $data               = [];
         $data['main_menu']  = 'expenseHead';
@@ -20,14 +19,15 @@ class ExpenseController extends Controller
         $data['page_title'] = 'expenseIndex';
         $data['expenseHeads']=ExpenseHead::get();
         $data['expense']=Expense::with('expenseHead')->get();
-        $data['branches']=Branch::all();
+        $data['branches']=Branch::where('active_status',1)->get();
         return view('admin.expense2.index', $data);
     }
+    
     public function create()
     {
         //
     }
-    public function expenseGetList(Request $request){
+      public function expenseGetList(Request $request){
         $model = Expense::with('expenseHead:id,name')->
             where(function ($query) use ($request) {
                 $from_date   = $request->input('from_date');
@@ -52,7 +52,9 @@ class ExpenseController extends Controller
                 // }
             })
             ->orderBy('id', 'desc')
-            ->select();
+            ->get();
+            // dd($model);
+            
             return DataTables::of($model)
             ->addIndexColumn()
             ->addColumn('expense_head_name', function ($data) {
@@ -63,19 +65,29 @@ class ExpenseController extends Controller
             })
             ->addColumn('action', function ($data) {
                 $button = "";
-                $button .= '<button class="btn btn-primary edit-modal"
-                type="button" data-bs-toggle="modal"
-                data-original-title="View"
-                data-bs-target="#editModal"
-                expense_id="' . $data->id . '"
-                title="Edit Expense">
-                <i class="fa fa-edit"></i>
-            </button>';
+                $deleteUrl = route('admin.expense.destroy', $data->id);
+                $csrfToken = csrf_field();
+                $method = method_field('DELETE');
+                $button .= '<div class="d-inline-flex align-items-center">
+                                <button class="btn btn-primary edit-modal mr-2"
+                                    type="button" data-bs-toggle="modal"
+                                    data-original-title="View"
+                                    data-bs-target="#editModal"
+                                    expense_id="' . $data->id . '"
+                                    title="Edit Expense">
+                                    <i class="fa fa-edit"></i>
+                                </button>
+                               <form action="' . $deleteUrl . '" method="POST" class="m-0">
+                                    ' . $csrfToken . '
+                                    ' . $method . '
+                                    <button onclick="return confirm(\'Are you sure you want to delete this item?\')" 
+                                            type="submit" class="btn btn-danger delete-btn">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </form>
+                            </div>';
 
-                if (auth_admin_user_permission('item.delete')) {
-                    $button .= '&nbsp;&nbsp;&nbsp; <button   onclick="return confirm(\'Are you sure you want to delete this item?\')"    class="btn btn-danger delete-btn" supplier_id="' . $data->id . '">
-                        <i class="fa fa-trash"></i> </button>';
-                }
+              
                 return $button;
             })
             ->rawColumns(['action'])
@@ -89,7 +101,6 @@ class ExpenseController extends Controller
         $request->validate([
           'amount'=>  'required|numeric',
           'expense_head_id'=>  'required|integer',
-          'branch_id'=>  'required|integer',
           'expense_id'=>  'required',
 
         ]);
@@ -116,7 +127,7 @@ class ExpenseController extends Controller
         return view('admin.expense2.edit', compact('item','expenseHeads','branches'));
     }
 
-    public function update(Request $request, $id)
+   public function update(Request $request, $id)
     {
         $request->validate([
             'amount'=>  'required|numeric',
@@ -146,7 +157,6 @@ class ExpenseController extends Controller
             return redirect()->back()->withInput();
         }
     }
-
     function expensePrint(Request $request){
         $expenses = Expense::
         where(function ($query) use ($request) {

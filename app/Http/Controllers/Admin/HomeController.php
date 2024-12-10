@@ -33,7 +33,7 @@ class HomeController extends Controller {
         $data['customers']     = Customer::active()->get();
         $data['items']         = Item::active()->get();
         $data['sales']         = Sale::orderBy('id','desc')->get();
-        $data['branches']         =Branch::all();
+        $data['branches']         =Branch::where('active_status',1)->get();
 
         return view('admin.dashboard', $data);
     }

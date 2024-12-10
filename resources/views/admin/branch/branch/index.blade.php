@@ -61,6 +61,7 @@
                                         <th width="10%" class="text-center"> Address </th>
                                         <th width="11%" class="text-center"> Vat Number</th>
                                         <th width="11%" class="text-center"> CR NO</th>
+                                        <th width="11%" class="text-center"> Status</th>
                                         <th width="11%" class="text-center"> Action</th>
                                     </tr>
                                 </thead>
@@ -215,6 +216,11 @@
                             class: "text-center"
                         },
                         {
+                            data: 'status',
+                            name: 'status',
+                            class: "text-center"
+                        },
+                        {
                             data: 'action',
                             name: 'action',
                             orderable: false,
@@ -237,7 +243,45 @@
 
             });
 
-           
+            $('#yajraDatatable').on('click', '.updateStatus', function(){
+            var status_object = $(this);
+            var branch_id  = status_object.attr('branch_id');
+            var status    = status_object.attr('status');
+            var url       = "{{ route('admin.branches.updateStatus') }}";
+
+            $.ajax({
+                cache     : false,
+                type      : "POST",
+                dataType  : "JSON",
+                data      : {
+                        branch_id: branch_id,
+                        status: status,
+                        _token : "{{ csrf_token() }}"
+                    },
+                error     : function(xhr){ alert("An error occurred: " + xhr.status + " " + xhr.statusText); },
+                url       : url,
+                success   : function(response){
+                    if(response.success){
+                        if(response.status == 1){
+                            status_object.removeClass("text-danger");
+                            status_object.addClass("text-success");
+                            status_object.html("Active");
+                            status_object.attr("status", 0);
+                        }
+                        else{
+                            status_object.removeClass("text-success");
+                            status_object.addClass("text-danger");
+                            status_object.html("Inactive");
+                            status_object.attr("status", 1);
+                        }
+                        toastr.success(response.success,'',100000);
+                    }
+                    else{
+                        toastr.error(response.error);
+                    }
+                }
+            })
+        });
 
             $('#yajraDatatable').on('click', '.edit-modal', function() {
                 var expense_id = $(this).attr('expense_id');

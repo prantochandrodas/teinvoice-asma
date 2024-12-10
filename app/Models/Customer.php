@@ -22,6 +22,7 @@ class Customer extends Model
         'email',
         'vat_no',
         'address',
+        'due_payment',
         'image',
         'status',
         'created_admin_id',
