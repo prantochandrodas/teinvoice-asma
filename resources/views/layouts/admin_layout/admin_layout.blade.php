@@ -247,6 +247,15 @@
                                 {{ __('Customer Due-List') }}
                             </a>
                         </div>
+
+                        <div class="col-md-6" style="padding-bottom: 10px">
+                            <a href="{{ route('admin.due-payment.index') }}"
+                                class="btn btn-success btn-block {{ $child_menu == 'DuePayment' ? 'active' : '' }} ">
+                                {{ __('Due Payment') }}
+                            </a>
+                        </div>
+
+
                         @if ($authAdmin->can('supplier.list') || $defaultAdmin)
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.supplier.index') }}"

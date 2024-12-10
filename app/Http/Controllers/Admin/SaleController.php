@@ -451,7 +451,9 @@ class SaleController extends Controller {
             }
             $payment_data=[
                 'sale_id' => $sale->id,
-                'payment_type' => 1,
+                'customer_id' => $customer_id,
+                'payment_type' => $request->input('payment_type'),
+                'type' => 1,
                 'voucher_number' => $invoice_no,
                 'pay_amount' => $request->input('pay_amount'),
                 'payment_date' => Carbon::today()->toDateString(),

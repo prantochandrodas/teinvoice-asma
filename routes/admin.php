@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DueCustomer;
 use App\Http\Controllers\Admin\DueCustomerController;
+use App\Http\Controllers\Admin\DuePaymenController;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
@@ -94,7 +95,9 @@ Route::group(['middleware' => ['admin', 'setLocalization'], 'prefix' => 'admin']
     Route::get('/due-customer/getdata', [DueCustomerController::class, 'getdata'])->name('due-customer.getdata');
     
     // due payment 
-    Route::get('/due-customer', [DueCustomerController::class, 'index'])->name('due-customer.index');
+    Route::get('/due-payment', [DuePaymenController::class, 'index'])->name('due-payment.index');
+    Route::get('/customer/due-payment/{id}', [DuePaymenController::class, 'getDuePayment'])->name('customer.due.payment');
+    Route::post('due-payment/adjustment', [DuePaymenController::class, 'adjustment'])->name('due-payment.adjustment');
 
 
     Route::get('supplier/getSuppliers', [App\Http\Controllers\Admin\SupplierController::class, 'getSuppliers'] )->name('supplier.getSuppliers');
