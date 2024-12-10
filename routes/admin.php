@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\DueCustomer;
 use App\Http\Controllers\Admin\DueCustomerController;
 use App\Http\Controllers\Admin\DuePaymenController;
+use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\SalesPaymentController;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
@@ -90,7 +92,7 @@ Route::group(['middleware' => ['admin', 'setLocalization'], 'prefix' => 'admin']
     Route::delete('customer/delete', [App\Http\Controllers\Admin\CustomerController::class, 'delete'] )->name('customer.delete');
     Route::resource('customer', App\Http\Controllers\Admin\CustomerController::class);
 
-
+    //due-customer list
     Route::get('/due-customer', [DueCustomerController::class, 'index'])->name('due-customer.index');
     Route::get('/due-customer/getdata', [DueCustomerController::class, 'getdata'])->name('due-customer.getdata');
     
@@ -99,6 +101,13 @@ Route::group(['middleware' => ['admin', 'setLocalization'], 'prefix' => 'admin']
     Route::get('/customer/due-payment/{id}', [DuePaymenController::class, 'getDuePayment'])->name('customer.due.payment');
     Route::post('due-payment/adjustment', [DuePaymenController::class, 'adjustment'])->name('due-payment.adjustment');
 
+    //sales payment list 
+    Route::get('/sale-payment', [PaymentController::class, 'salePaymentList'])->name('sale-payment.salePaymentList');
+    Route::get('/sale-payment/getdata', [PaymentController::class, 'salePaymentGetdata'])->name('sale-payment.getdata');
+
+    // due payment 
+    Route::get('/due-payment-list', [PaymentController::class, 'duePaymentList'])->name('due-payment.duePaymentList');
+    Route::get('/due-payment/getdata', [PaymentController::class, 'duePaymentGetdata'])->name('due-payment.getdata');
 
     Route::get('supplier/getSuppliers', [App\Http\Controllers\Admin\SupplierController::class, 'getSuppliers'] )->name('supplier.getSuppliers');
     Route::post('supplier/updateStatus', [App\Http\Controllers\Admin\SupplierController::class, 'updateStatus'] )->name('supplier.updateStatus');

@@ -255,6 +255,20 @@
                             </a>
                         </div>
 
+                        <div class="col-md-6" style="padding-bottom: 10px">
+                            <a href="{{ route('admin.sale-payment.salePaymentList') }}"
+                                class="btn btn-success btn-block {{ $child_menu == 'SalesPaymentList' ? 'active' : '' }} ">
+                                {{ __('Sale Payment List') }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-6" style="padding-bottom: 10px">
+                            <a href="{{ route('admin.due-payment.duePaymentList') }}"
+                                class="btn btn-success btn-block {{ $child_menu == 'DuePaymentList' ? 'active' : '' }} ">
+                                {{ __('Due Payment List') }}
+                            </a>
+                        </div>
+
 
                         @if ($authAdmin->can('supplier.list') || $defaultAdmin)
                             <div class="col-md-6" style="padding-bottom: 10px">
