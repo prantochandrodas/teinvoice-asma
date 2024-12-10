@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\Admin\BranchController;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\DueCustomer;
+use App\Http\Controllers\Admin\DueCustomerController;
 use Faker\Guesser\Name;
 use Illuminate\Support\Facades\Route;
 
@@ -85,6 +88,13 @@ Route::group(['middleware' => ['admin', 'setLocalization'], 'prefix' => 'admin']
     Route::post('customer/updateStatus', [App\Http\Controllers\Admin\CustomerController::class, 'updateStatus'] )->name('customer.updateStatus');
     Route::delete('customer/delete', [App\Http\Controllers\Admin\CustomerController::class, 'delete'] )->name('customer.delete');
     Route::resource('customer', App\Http\Controllers\Admin\CustomerController::class);
+
+
+    Route::get('/due-customer', [DueCustomerController::class, 'index'])->name('due-customer.index');
+    Route::get('/due-customer/getdata', [DueCustomerController::class, 'getdata'])->name('due-customer.getdata');
+    
+    // due payment 
+    Route::get('/due-customer', [DueCustomerController::class, 'index'])->name('due-customer.index');
 
 
     Route::get('supplier/getSuppliers', [App\Http\Controllers\Admin\SupplierController::class, 'getSuppliers'] )->name('supplier.getSuppliers');

@@ -241,6 +241,12 @@
                             </div>
                         @endif
 
+                        <div class="col-md-6" style="padding-bottom: 10px">
+                            <a href="{{ route('admin.due-customer.index') }}"
+                                class="btn btn-success btn-block {{ $child_menu == 'DueList' ? 'active' : '' }} ">
+                                {{ __('Customer Due-List') }}
+                            </a>
+                        </div>
                         @if ($authAdmin->can('supplier.list') || $defaultAdmin)
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.supplier.index') }}"
