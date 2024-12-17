@@ -24,11 +24,11 @@
 
                         <fieldset>
                             <legend>
-                                {{ __('message.bill_information') }}
+                                {{ __('message.bill_information') }} ({{__('message.bill_information', [], $secondary_locale)}})
                             </legend>
                             <div class="row">
                                 <div class="col-md-4">
-                                    <label>Search Bill</label>
+                                    <label> {{ __('message.search_bill') }} ({{__('message.search_bill', [], $secondary_locale)}})</label>
                                     <div class="input-group-append">
                                         {{-- <input  type="text" name="search_bill" id="search_bill"
                                         value="" class="form-control" placeholder="Search Bill ..."/> --}}
@@ -44,11 +44,11 @@
 
                                 <div class="col-md-2 mt-3">
                                     <button type="button" id="invoice_print" class="btn btn-success">
-                                        {{ __('message.print') }} </button>
+                                        {{ __('message.print') }} ({{__('message.print', [], $secondary_locale)}}) </button>
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label for="bill_type">{{ __('message.bill_type') }}</label>
+                                    <label for="bill_type">{{ __('message.bill_type') }} ({{__('message.bill_type', [], $secondary_locale)}})</label>
                                     <select name="bill_type" id="bill_type" class="form-control select2"
                                         data-placeholder="Select an Bill Type" data-tags="true" data-allow-clear="true">
                                         <option value="Sales">Sales </option>
@@ -61,7 +61,7 @@
                                 <div class="row">
 
                                     <div class="col-md-2" style="margin-top: 5px">
-                                        <label for="bill_no">{{ __('message.bill_no') }}</label>
+                                        <label for="bill_no">{{ __('message.bill_no') }} ({{__('message.bill_no', [], $secondary_locale)}})</label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px">
                                         <input type="text" name="bill_no" id="bill_no" value="{{ $bill_no }}"
@@ -69,7 +69,7 @@
                                     </div>
 
                                     <div class="col-md-2" style="margin-top: 5px">
-                                        <label for="bill_date">{{ __('message.bill_date') }} </label>
+                                        <label for="bill_date">{{ __('message.bill_date') }} ({{__('message.bill_date', [], $secondary_locale)}})</label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px">
 
@@ -79,7 +79,7 @@
                                     </div>
 
                                     <div class="col-md-2" style="margin-top: 5px">
-                                        <label for="customer_id">{{ __('message.customer') }} </label>
+                                        <label for="customer_id">{{ __('message.customer') }} ({{__('message.customer', [], $secondary_locale)}})</label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px">
 
@@ -95,7 +95,7 @@
                                         </select>
                                     </div>
                                     <div class="col-md-2" style="margin-top: 5px">
-                                        <label for="customer_id">{{ __('Branches') }} </label>
+                                        <label for="customer_id">{{ __('message.branch') }} ({{__('message.branch', [], $secondary_locale)}})</label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px">
 
@@ -144,7 +144,7 @@
 
 
                                     <div class="col-md-2" style="margin-top: 5px">
-                                        <label for="note">{{ __('message.note') }} </label>
+                                        <label for="note">{{ __('message.note') }} ({{__('message.note', [], $secondary_locale)}})</label>
                                     </div>
                                     <div class="col-md-10" style="margin-top: 5px">
                                         <input type="text" name="note" id="note" value="{{ old('note') }}"
@@ -152,7 +152,7 @@
                                     </div>
 
                                     <div class="col-md-3" style="margin-top: 5px">
-                                        <label>Scan Your Bar Code</label>
+                                        <label>{{ __('message.scan_your_bar_code') }} ({{__('message.scan_your_bar_code', [], $secondary_locale)}})</label>
                                     </div>
                                     <div class="col-md-9" style="margin-top: 5px">
 
@@ -164,7 +164,7 @@
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-sm-2" style="margin-top: 5px">
-                                                <label> {{ __('message.item') }}</label>
+                                                <label> {{ __('message.item') }} ({{__('message.item', [], $secondary_locale)}})</label>
                                             </div>
                                             <div class="col-sm-8" style="margin-top: 5px">
                                                 <select id="item_id" class="form-control select2"
@@ -182,7 +182,7 @@
                                             <div class="col-sm-2" style="margin-top: 5px">
                                                 <button type="button" class="btn btn-success btn-block"
                                                     id="item_add_button">
-                                                    {{ __('message.add') }}
+                                                    {{ __('message.add') }} ({{__('message.add', [], $secondary_locale)}})
                                                 </button>
                                             </div>
                                         </div>
@@ -198,11 +198,11 @@
                                                         <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </th>
-                                                <th class="text-center" width="15%">{{ __('message.amount') }}</th>
-                                                <th class="text-center" width="15%">{{ __('message.price') }} </th>
-                                                <th class="text-center" width="10%">{{ __('message.quantity') }}</th>
-                                                <th class="text-center" width="20%">{{ __('message.image') }} </th>
-                                                <th class="text-center" width="30%">{{ __('message.name') }} </th>
+                                                <th class="text-center" width="15%">{{ __('message.amount') }} ({{__('message.amount', [], $secondary_locale)}})</th>
+                                                <th class="text-center" width="15%">{{ __('message.price') }} ({{__('message.price', [], $secondary_locale)}})</th>
+                                                <th class="text-center" width="10%">{{ __('message.quantity') }} ({{__('message.quantity', [], $secondary_locale)}})</th>
+                                                <th class="text-center" width="20%">{{ __('message.image') }}  ({{__('message.image', [], $secondary_locale)}})</th>
+                                                <th class="text-center" width="30%">{{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}})</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -218,7 +218,7 @@
                                 <div class="row">
                                     {{-- subtotal_amount --}}
                                     <div class="col-md-2" style="margin-top: 5px">
-                                        <label for="subtotal_amount">{{ __('message.subtotal') }} </label>
+                                        <label for="subtotal_amount">{{ __('message.subtotal') }} ({{__('message.subtotal', [], $secondary_locale)}})</label>
                                     </div>
 
                                     <div class="col-md-4" style="margin-top: 5px">
@@ -230,18 +230,18 @@
                                             placeholder="{{ __('message.sub_total_amount') }}">
                                     </div>
                                     <div class="col-md-2" style="margin-top: 5px">
-                                        <label for="total_item">{{ __('message.total_item') }} </label>
+                                        <label for="total_item">{{ __('message.total_item') }} ({{__('message.total_item', [], $secondary_locale)}})</label>
                                     </div>
                                     {{-- total_item --}}
                                     <div class="col-md-4" style="margin-top: 5px">
 
                                         <input type="text" name="total_item" id="total_item"
                                             value="{{ old('total_item') }}" class="form-control " readonly
-                                            placeholder="{{ __('message.total_item') }} ">
+                                            placeholder="{{ __('message.total_item') }}">
                                     </div>
                                     {{-- discount_amount --}}
                                     <div class="col-md-3" style="margin-top: 5px">
-                                        <label for="discount_amount">{{ __('message.discount_amount') }}</label>
+                                        <label for="discount_amount">{{ __('message.discount_amount') }} ({{__('message.discount_amount', [], $secondary_locale)}})</label>
                                     </div>
 
                                     <div class="col-md-3" style="margin-top: 5px">
@@ -252,7 +252,7 @@
                                     </div>
                                     {{-- total_tax_amount --}}
                                     <div class="col-md-3" style="margin-top: 5px">
-                                        <label for="total_tax_amount">{{ __('message.tax_amount') }}
+                                        <label for="total_tax_amount">{{ __('message.tax_amount') }} ({{__('message.tax_amount', [], $secondary_locale)}})
                                             ({{ $application->vat_percent }}%)</label>
                                     </div>
                                     <div class="col-md-3" style="margin-top: 5px">
@@ -263,7 +263,7 @@
                                     </div>
                                     {{-- total_amount --}}
                                     <div class="col-md-2" style="margin-top: 5px">
-                                        <label for="total_amount">{{ __('message.total') }} </label>
+                                        <label for="total_amount">{{ __('message.total') }} ({{__('message.total', [], $secondary_locale)}})</label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px">
                                         <input type="text" name="total_amount" id="total_amount"
@@ -273,7 +273,7 @@
 
                                     {{-- pay_amount --}}
                                     <div class="col-md-2" style="margin-top: 5px; display: none;" id="pay_amount_label">
-                                        <label for="pay_amount">{{ __('Pay Amount') }} </label>
+                                        <label for="pay_amount">{{ __('message.pay_amount') }} ({{__('message.pay_amount', [], $secondary_locale)}})</label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px; display:none;" id="pay_amount_input_div">
                                         <input type="text" name="pay_amount" id="pay_amount"
@@ -283,7 +283,7 @@
                                     
                                     {{-- due_payment --}}
                                     <div class="col-md-2" style="margin-top: 5px; display:none" id="due_payment_label">
-                                        <label for="due_payment">{{ __('Due Payment') }} </label>
+                                        <label for="due_payment">{{ __('message.due_payment') }} ({{__('message.due_payment', [], $secondary_locale)}}) </label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px; display:none" id="due_payment_input_div">
                                         <input type="text" name="due_payment" id="due_payment"
@@ -298,24 +298,24 @@
                                     </div>
 
                                     <div class="col-md-12 text-center" style="margin-top: 5px">
-                                        <p style="margin-bottom: 0px">Please select Payment Type:</p>
+                                        <p style="margin-bottom: 0px">{{ __('message.please_select_payment_type') }} ({{__('message.please_select_payment_type', [], $secondary_locale)}}):</p>
                                         <input type="radio" id="credit" name="payment_type" value="credit">
-                                        <label for="credit">Credit</label>
+                                        <label for="credit">{{ __('message.credit') }} ({{__('message.credit', [], $secondary_locale)}})</label>
                                         <input type="radio" id="credit card" name="payment_type" value="credit card">
-                                        <label for="credit card">Credit Card</label>
+                                        <label for="credit card">{{ __('message.credit_card') }} ({{__('message.credit_card', [], $secondary_locale)}})</label>
                                         <input type="radio" id="Mada" name="payment_type" value="Mada">
-                                        <label for="Mada">Mada</label>
+                                        <label for="Mada">{{ __('message.mada') }} ({{__('message.mada', [], $secondary_locale)}})</label>
                                         <input type="radio" id="Cash" name="payment_type" value="Cash"
                                             checked="checked">
-                                        <label for="Cash"> Cash</label>
+                                        <label for="Cash"> {{ __('message.cash') }} ({{__('message.cash', [], $secondary_locale)}})</label>
                                     </div>
 
                                     <div class="col-md-12 text-center mt-2">
                                         <button type="submit" name="btn" value="print"
-                                            class="btn btn-success">{{ __('message.print') }}</button>
+                                            class="btn btn-success">{{ __('message.print') }} ({{__('message.print', [], $secondary_locale)}})</button>
 
                                         <button type="submit" name="btn" value="save_and_print"
-                                            class="btn btn-success">{{ __('message.save_and_print') }}</button>
+                                            class="btn btn-success">{{ __('message.save_and_print') }} ({{__('message.save_and_print', [], $secondary_locale)}})</button>
                                     </div>
                                 </div>
                             </div>
@@ -343,7 +343,7 @@
                             style="max-height: 100px; height: 80px; padding: 2px; width:132px; margin:2px">
                             <div class="small-box bg-danger text-center add-other-sale-item">
                                 <div style="font-size:24px; max-height: 100px; height: 60px;">
-                                    {{ __('message.other') }}
+                                    {{ __('message.other') }} ({{__('message.other', [], $secondary_locale)}})
                                 </div>
                             </div>
                         </div>
@@ -390,20 +390,22 @@
                         @endforeach --}}
                     </div>
                     <div class="row" style="padding: 2px; max-height: 750px;">
-                        <a href="{{ route('admin.buy-product-entry.index') }}" class="btn btn-success">شراء تقرير المنتج <br> Buy Product
-                            Report</a>
+                        <a href="{{ route('admin.buy-product-entry.index') }}" class="btn btn-success"> ({{__('message.buy_product_report', [], $secondary_locale)}}) <br> {{ __('message.buy_product_report') }}</a>
                     </div>
                     <div class="row" style="padding: 2px; max-height: 750px;">
-                        <a href="{{ route('admin.expense-head.index') }}" class="btn btn-success">رئيس النفقات <br> Expense Head</a>
+                        <a href="{{ route('admin.expense-head.index') }}" class="btn btn-success"> ({{__('message.expense_head', [], $secondary_locale)}}) <br> {{ __('message.expense_head') }}</a>
                     </div>
                     <div class="row" style="padding: 2px; max-height: 750px;">
-                        <a href="{{ route('admin.expense.index') }}" class="btn btn-success">المصروفات <br> Expense</a>
+                        <a href="{{ route('admin.expense.index') }}" class="btn btn-success">({{__('message.expense', [], $secondary_locale)}}) <br> {{ __('message.expense') }}</a>
                     </div>
                     <div class="row" style="padding: 2px; max-height: 750px;">
-                        <a href="{{ route('admin.customer.index') }}" class="btn btn-success">عميل <br> customer</a>
+                        <a href="{{ route('admin.customer.index') }}" class="btn btn-success">({{__('message.customer', [], $secondary_locale)}}) <br> {{ __('message.customer') }}</a>
                     </div>
                     <div class="row" style="padding: 2px; max-height: 750px;">
-                        <a href="{{ route('admin.due-payment.index') }}" class="btn btn-success">الدفع المستحق <br> Due Payment</a>
+                        <a href="{{ route('admin.due-payment.index') }}" class="btn btn-success">({{__('message.due_payment', [], $secondary_locale)}}) <br> {{ __('message.due_payment') }}</a>
+                    </div>
+                    <div class="row" style="padding: 2px; max-height: 750px;">
+                        <a href="{{ route('admin.customer.ledger') }}" class="btn btn-success">({{__('message.customer_ledger', [], $secondary_locale)}}) <br> {{ __('message.customer_ledger') }}</a>
                     </div>
                 </div>
             </div>
@@ -415,7 +417,7 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header bg-primary">
-                    <h4 class="modal-title">{{ __('message.view') }} </h4>
+                    <h4 class="modal-title">{{ __('message.view') }} ({{__('message.view', [], $secondary_locale)}})</h4>
                     <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -427,7 +429,7 @@
                                 <a href="{{ route('admin.item.create') }}" target="_blank"
                                     class="btn btn-success float-right">
                                     <i class="fa fa-pencil-alt"></i>
-                                    {{ __('message.add_item') }}
+                                    {{ __('message.add_item') }} ({{__('message.add_item', [], $secondary_locale)}})
                                 </a>
                             @endif
                         </div>
@@ -478,7 +480,7 @@
 
                         <div class="card-footer text-center">
                             <button type="submit" class="btn btn-success">
-                                {{ __('message.submit') }}
+                                {{ __('message.submit') }} ({{__('message.submit', [], $secondary_locale)}})
                             </button>
                         </div>
                     </form>
@@ -486,7 +488,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger float-right" data-dismiss="modal">
-                        {{ __('message.close') }}
+                        {{ __('message.close') }} ({{__('message.close', [], $secondary_locale)}})
                     </button>
                 </div>
             </div>
@@ -503,7 +505,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger float-right " id="closePrintPreviewModal"
                         data-dismiss="modal">
-                        {{ __('message.close') }}
+                        {{ __('message.close') }} ({{__('message.close', [], $secondary_locale)}})
                     </button>
                 </div>
             </div>

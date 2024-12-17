@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Sale List</h1>
+                    <h1 class="m-0 text-dark"> {{ __('message.sale_list') }} ({{__('message.sale_list', [], $secondary_locale)}})</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -26,10 +26,10 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"> Sale List </h3>
+                            <h3 class="card-title"> {{ __('message.sale_list') }} ({{__('message.sale_list', [], $secondary_locale)}}) </h3>
                             <div class="row input-daterange" style="margin-top: 40px">
                                 <div class="col-md-3">
-                                    <label for="payment">{{ __('Payment Type') }} </label>
+                                    <label for="payment">{{ __('message.payment_type') }} ({{__('message.payment_type', [], $secondary_locale)}}) </label>
                                     <select  id="payment" class="form-control select2"
                                         data-placeholder="Select a Branch"
                                         data-tags="true"
@@ -42,7 +42,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="branch_name">{{ __('Branch Name') }} </label>
+                                    <label for="branch_name">{{ __('message.branch_name') }} ({{__('message.branch_name', [], $secondary_locale)}})</label>
                                     <select  id="branch_name" class="form-control select2"
                                         data-placeholder="Select a Branch"
                                         data-tags="true"
@@ -56,7 +56,7 @@
                                     </select>
                                 </div>
                                 <div class="col-md-3">
-                                    <label for="customer_id">{{ __('message.customer') }} </label>
+                                    <label for="customer_id">{{ __('message.customer') }} ({{__('message.customer', [], $secondary_locale)}})</label>
                                     <select  id="customer_id" class="form-control select2"
                                         data-placeholder="Select a Customer"
                                         data-tags="true"
@@ -71,7 +71,7 @@
                                 </div>
 
                                 <div class="col-sm-4">
-                                    <label for="to_date">Date</label>
+                                    <label for="to_date">{{ __('message.date') }} ({{__('message.date', [], $secondary_locale)}})</label>
                                     <div class="input-group">
                                         <input type="date" id="from_date" class="form-control" value=""/>
                                         <input type="date" id="to_date" class="form-control" value=""/>
@@ -100,29 +100,29 @@
 
                         <div class="card-body">
                             <div class="row">
-                                <div class="col-sm-6 text-left text-bold" style="font-size: 20px;">SHOP NAME : {{ $application->name }} </div>
-                                <div class="col-sm-6 text-right text-bold" style="font-size: 20px;">VAT NUMBER: {{ $application->vat_number }} </div>
-                                <div class="col-sm-6 text-left text-bold" style="font-size: 20px;">DATE: <span>{{ date('d-F-Y ') }} to {{ date('d-F-Y') }} </span></div>
+                                <div class="col-sm-6 text-left text-bold" style="font-size: 20px;">{{ __('message.shop_name') }} ({{__('message.shop_name', [], $secondary_locale)}}) : {{ $application->name }} </div>
+                                <div class="col-sm-6 text-right text-bold" style="font-size: 20px;">{{ __('message.vat_number') }} ({{__('message.vat_number', [], $secondary_locale)}}): {{ $application->vat_number }} </div>
+                                <div class="col-sm-6 text-left text-bold" style="font-size: 20px;">{{ __('message.date') }} ({{__('message.date', [], $secondary_locale)}}): <span>{{ date('d-F-Y ') }} to {{ date('d-F-Y') }} </span></div>
                             </div>
                             <div class="table-responsive">
                                 <table id="yajraDatatable" class="table table-bordered table-striped">
                                     <thead>
                                         <tr>
-                                            <th  class="text-center"> SL </th>
-                                            <th  class="text-center"> Date</th>
-                                            <th  class="text-center"> Bill No </th>
-                                            <th  class="text-center"> Bill Type</th>
-                                            <th  class="text-center"> Quantity </th>
-                                            <th  class="text-center"> Grand Amount </th>
-                                            <th  class="text-center"> Discount Amount </th>
-                                            <th  class="text-center"> Tax Amount </th>
-                                            <th  class="text-center"> Pay Amount  </th>
-                                            <th  class="text-center"> Due Amount  </th>
-                                            <th  class="text-center"> Final Amount  </th>
-                                            <th  class="text-center"> Purchase  Amount  </th>
-                                            <th  class="text-center"> Purchase  TAX Amount  </th>
-                                            <th  class="text-center"> Purchase Final Amount  </th>
-                                            <th  class="text-center"> Action </th>
+                                            <th  class="text-center"> {{ __('message.serial') }} ({{__('message.serial', [], $secondary_locale)}}) </th>
+                                            <th  class="text-center"> {{ __('message.date') }} ({{__('message.date', [], $secondary_locale)}})</th>
+                                            <th  class="text-center"> {{ __('message.bill_no') }} ({{__('message.bill_no', [], $secondary_locale)}}) </th>
+                                            <th  class="text-center"> {{ __('message.bill_type') }} ({{__('message.bill_type', [], $secondary_locale)}})</th>
+                                            <th  class="text-center"> {{ __('message.quantity') }} ({{__('message.quantity', [], $secondary_locale)}}) </th>
+                                            <th  class="text-center"> {{ __('message.grand_amount') }} ({{__('message.grand_amount', [], $secondary_locale)}}) </th>
+                                            <th  class="text-center"> {{ __('message.discount_amount') }} ({{__('message.discount_amount', [], $secondary_locale)}})</th>
+                                            <th  class="text-center"> {{ __('message.tax_amount') }} ({{__('message.tax_amount', [], $secondary_locale)}}) </th>
+                                            <th  class="text-center"> {{ __('message.pay_amount') }} ({{__('message.pay_amount', [], $secondary_locale)}})  </th>
+                                            <th  class="text-center"> {{ __('message.due_amount') }} ({{__('message.due_amount', [], $secondary_locale)}})  </th>
+                                            <th  class="text-center"> {{ __('message.final_amount') }} ({{__('message.final_amount', [], $secondary_locale)}})  </th>
+                                            <th  class="text-center"> {{ __('message.purchase_amount') }} ({{__('message.purchase_amount', [], $secondary_locale)}}) </th>
+                                            <th  class="text-center"> {{ __('message.purchase_tax_amount') }} ({{__('message.purchase_tax_amount', [], $secondary_locale)}}) </th>
+                                            <th  class="text-center"> {{ __('message.purchase') }} {{ __('message.final_amount') }}  ({{__('message.purchase', [], $secondary_locale)}} {{__('message.final_amount', [], $secondary_locale)}})</th>
+                                            <th  class="text-center"> {{ __('message.action') }} ({{__('message.action', [], $secondary_locale)}}) </th>
                                         </tr>
                                     </thead>
                                     <tfoot>

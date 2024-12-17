@@ -18,11 +18,16 @@ class LocalizationController extends Controller
             $locale = "en";
         }
 
+        $secondary_locale='ar';
+        if ($locale == "ar"){
+            $secondary_locale='en';
+        }
+
         Application::query()->update(['locale' => $locale]);
 
         app()->setLocale($locale);
         session()->put('locale', $locale);
-
+        session()->put('secondary_locale', $secondary_locale);
         return redirect()->back();
     }
 }

@@ -5,7 +5,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Stock Item List</h1>
+          <h1 class="m-0 text-dark">{{ __('message.stock_item_list') }} ({{__('message.stock_item_list', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -23,11 +23,11 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Stock Item List </h3>
+                        <h3 class="card-title">{{ __('message.stock_item_list') }} ({{__('message.stock_item_list', [], $secondary_locale)}}) </h3>
 
                         <div class="row input-daterange" style="margin-top: 40px">
                             <div class="col-md-10">
-                                <label for="item_id">Item </label>
+                                <label for="item_id">{{ __('message.item') }} ({{__('message.item', [], $secondary_locale)}}) </label>
                                 <select name="item_id" id="item_id" class="form-control select2" style="width: 100%" >
                                     <option value="0" >All Item  </option>
                                     @foreach ($items as $item)
@@ -58,25 +58,25 @@
                         <table id="yajraDatatable" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th width="5%" class="text-center"> SL </th>
-                                    <th width="15%" class="text-center"> Item Code </th>
-                                    <th width="20%" class="text-center"> Item Name </th>
-                                    <th width="20%" class="text-center"> Quantity </th>
-                                    <th width="20%" class="text-center"> Price </th>
-                                    <th width="20%" class="text-center"> Stock Amount </th>
+                                    <th width="5%" class="text-center"> {{ __('message.serial') }} ({{__('message.serial', [], $secondary_locale)}}) </th>
+                                    <th width="15%" class="text-center"> {{ __('message.item') }} {{ __('message.code') }} ({{__('message.item', [], $secondary_locale)}} {{__('message.code', [], $secondary_locale)}}) </th>
+                                    <th width="20%" class="text-center"> {{ __('message.item') }} {{ __('message.name') }} ({{__('message.item', [], $secondary_locale)}} {{__('message.name', [], $secondary_locale)}}) </th>
+                                    <th width="20%" class="text-center"> {{ __('message.quantity') }} ({{__('message.quantity', [], $secondary_locale)}}) </th>
+                                    <th width="20%" class="text-center"> {{ __('message.price') }} ({{__('message.price', [], $secondary_locale)}}) </th>
+                                    <th width="20%" class="text-center"> {{ __('message.stock_amount') }} ({{__('message.stock_amount', [], $secondary_locale)}}) </th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th class="text-center" colspan="3"> Total </th>
+                                    <th class="text-center" colspan="3"> {{ __('message.total') }} ({{__('message.total', [], $secondary_locale)}}) </th>
                                     <th class="text-center">
                                         <span id="page_total_quantity"></span> <br>
-                                        (<span id="total_quantity"></span> Total) </th>
+                                        (<span id="total_quantity"></span> {{ __('message.total') }} {{__('message.total', [], $secondary_locale)}}) </th>
                                     </th>
                                     <th class="text-center" >  </th>
                                     <th class="text-center">
                                         <span id="page_total_amount"></span> <br>
-                                        (<span id="total_amount"></span> Total) </th>
+                                        (<span id="total_amount"></span> {{ __('message.total') }} {{__('message.total', [], $secondary_locale)}}) </th>
                                 </tr>
                             </tfoot>
                         </table>

@@ -128,63 +128,63 @@
         <div class="modal-content">
             <div class="modal-body" id="showResult">
                 <div class="card-header text-center " style="font-size: 20px; font-weight:bold">
-                    {{ __('message.report') }}
+                    {{ __('message.report') }} ({{__('message.report', [], $secondary_locale)}})
                 </div>
                 <div class="card-body row" >
 
                     <div class="col-md-6" style="padding-bottom: 10px">
                         <a href="{{ route('admin.sale.list') }}"
                         class="btn btn-success btn-block {{ $child_menu == 'application' ? 'active' : '' }} ">
-                            Item Report
+                        {{ __('message.item_report') }} ({{__('message.item_report', [], $secondary_locale)}})
                         </a>
                     </div>
 
                     <div class="col-md-6" style="padding-bottom: 10px">
                         <a href="{{ route('admin.sale.list') }}"
                         class="btn btn-success btn-block {{ $child_menu == 'application' ? 'active' : '' }} ">
-                            Daily Sales Report
+                        {{ __('message.daily_sales_report') }} ({{__('message.daily_sales_report', [], $secondary_locale)}})
                         </a>
                     </div>
 
                     <div class="col-md-6" style="padding-bottom: 10px">
                         <a href="{{ route('admin.sale.list') }}"
                         class="btn btn-success btn-block {{ $child_menu == 'application' ? 'active' : '' }} ">
-                            Monthly Sales Report
+                        {{ __('message.monthly_sales_report') }} ({{__('message.monthly_sales_report', [], $secondary_locale)}})
                         </a>
                     </div>
 
                     <div class="col-md-6" style="padding-bottom: 10px">
                         <a href="{{ route('admin.sale.list') }}"
                         class="btn btn-success btn-block {{ $child_menu == 'application' ? 'active' : '' }} ">
-                            User Report
+                        {{ __('message.user_report') }} ({{__('message.user_report', [], $secondary_locale)}})
                         </a>
                     </div>
 
                     <div class="col-md-6" style="padding-bottom: 10px">
                         <a href="{{ route('admin.stockItem.index') }}"
                         class="btn btn-success btn-block {{ $child_menu == 'application' ? 'active' : '' }} ">
-                            Stock Report
+                        {{ __('message.stock_report') }} ({{__('message.stock_report', [], $secondary_locale)}})
                         </a>
                     </div>
 
                     <div class="col-md-6" style="padding-bottom: 10px">
                         <a href="{{ route('admin.sale-payment.salePaymentList') }}"
                             class="btn btn-success btn-block {{ $child_menu == 'SalesPaymentList' ? 'active' : '' }} ">
-                            {{ __('Sale Payment List') }}
+                            {{ __('message.sale_payment_list') }} ({{__('message.sale_payment_list', [], $secondary_locale)}})
                         </a>
                     </div>
 
                     <div class="col-md-6" style="padding-bottom: 10px">
                         <a href="{{ route('admin.due-payment.duePaymentList') }}"
                             class="btn btn-success btn-block {{ $child_menu == 'DuePaymentList' ? 'active' : '' }} ">
-                            {{ __('Due Payment List') }}
+                            {{ __('message.due_payment_list') }} ({{__('message.due_payment_list', [], $secondary_locale)}})
                         </a>
                     </div>
 
                     <div class="col-md-6" style="padding-bottom: 10px">
                         <a href="{{ route('admin.due-customer.index') }}"
                             class="btn btn-success btn-block {{ $child_menu == 'DueList' ? 'active' : '' }} ">
-                            {{ __('Customer Due-List') }}
+                            {{ __('message.customer_due_list') }} ({{__('message.customer_due_list', [], $secondary_locale)}})
                         </a>
                     </div>
                     {{-- <div class="col-md-6" style="padding-bottom: 10px">
@@ -197,7 +197,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-            <button  type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+            <button  type="button" class="btn btn-danger float-right" data-dismiss="modal"> {{ __('message.close') }} ({{__('message.close', [], $secondary_locale)}})</button>
             </div>
         </div>
         </div>
@@ -213,7 +213,7 @@
             <div class="modal-content">
                 <div class="modal-body" id="showResult">
                     <div class="card-header text-center " style="font-size: 20px; font-weight:bold">
-                        {{ __('message.settings') }}
+                        {{ __('message.settings') }} ({{__('message.settings', [], $secondary_locale)}})
                     </div>
                     <div class="card-body row" >
 
@@ -221,7 +221,7 @@
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.application.index') }}"
                                 class="btn btn-success btn-block {{ $child_menu == 'application' ? 'active' : '' }} ">
-                                    {{ __('message.company_information') }}
+                                    {{ __('message.company_information') }} ({{__('message.company_information', [], $secondary_locale)}})
                                 </a>
                             </div>
                         @endif
@@ -230,7 +230,7 @@
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.admin.index') }}"
                                     class="btn btn-success btn-block {{ $child_menu == 'admin' ? 'active' : '' }} ">
-                                    {{ __('message.admin') }}
+                                    {{ __('message.admin') }} ({{__('message.admin', [], $secondary_locale)}})
                                 </a>
                             </div>
                         @endif
@@ -239,7 +239,7 @@
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.role.index') }}"
                                     class="btn btn-success btn-block {{ $child_menu == 'role' ? 'active' : '' }} ">
-                                    {{ __('message.role') }}
+                                    {{ __('message.role') }} ({{__('message.role', [], $secondary_locale)}})
                                 </a>
                             </div>
                         @endif
@@ -248,7 +248,7 @@
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.item.index') }}"
                                     class="btn btn-success btn-block {{ $child_menu == 'item' ? 'active' : '' }} ">
-                                    {{ __('message.item') }}
+                                    {{ __('message.item') }} ({{__('message.item', [], $secondary_locale)}})
                                 </a>
                             </div>
                         @endif
@@ -257,7 +257,7 @@
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.customer.index') }}"
                                     class="btn btn-success btn-block {{ $child_menu == 'customer' ? 'active' : '' }} ">
-                                    {{ __('message.customer') }}
+                                    {{ __('message.customer') }} ({{__('message.customer', [], $secondary_locale)}})
                                 </a>
                             </div>
                         @endif
@@ -272,7 +272,7 @@
                         <div class="col-md-6" style="padding-bottom: 10px">
                             <a href="{{ route('admin.due-payment.index') }}"
                                 class="btn btn-success btn-block {{ $child_menu == 'DuePayment' ? 'active' : '' }} ">
-                                {{ __('Due Payment') }}
+                                {{ __('message.due_payment') }} ({{__('message.due_payment', [], $secondary_locale)}})
                             </a>
                         </div>
 
@@ -295,7 +295,7 @@
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.supplier.index') }}"
                                     class="btn btn-success btn-block {{ $child_menu == 'supplier' ? 'active' : '' }} ">
-                                    {{ __('message.supplier') }}
+                                    {{ __('message.supplier') }} ({{__('message.supplier', [], $secondary_locale)}})
                                 </a>
                             </div>
                         @endif
@@ -304,7 +304,7 @@
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.purchase.purchaseList') }}"
                                     class="btn btn-success btn-block {{ $child_menu == 'purchase' ? 'active' : '' }} ">
-                                    {{ __('message.purchase') }}
+                                    {{ __('message.purchase') }} ({{__('message.purchase', [], $secondary_locale)}})
                                 </a>
                             </div>
                         @endif
@@ -312,7 +312,7 @@
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.expense-head.index') }}"
                                     class="btn btn-success btn-block {{ $child_menu == 'expenseHeadIndex' ? 'active' : '' }} ">
-                                    {{ __('Expense Head') }}
+                                    {{ __('message.expense_head') }} ({{__('message.expense_head', [], $secondary_locale)}})
                                 </a>
                             </div>
                         @endif
@@ -320,7 +320,7 @@
                             <div class="col-md-6" style="padding-bottom: 10px">
                                 <a href="{{ route('admin.expense.index') }}"
                                     class="btn btn-success btn-block {{ $child_menu == 'expenseIndex' ? 'active' : '' }} ">
-                                    {{ __('Expense') }}
+                                    {{ __('message.expense') }} ({{__('message.expense', [], $secondary_locale)}})
                                 </a>
                             </div>
                         {{-- @endif --}}
@@ -334,21 +334,21 @@
                         <div class="col-md-6" style="padding-bottom: 10px">
                             <a href="{{ route('admin.branches.index') }}"
                                 class="btn btn-success btn-block {{ $child_menu == 'branch' ? 'active' : '' }} ">
-                                {{ __('Branch') }}
+                                {{ __('message.branch') }} ({{__('message.branch', [], $secondary_locale)}})
                             </a>
                         </div>
 
                         <div class="col-md-6" style="padding-bottom: 10px">
                             <a href="{{ route('admin.customer.ledger') }}"
                                 class="btn btn-success btn-block {{ $child_menu == 'customerLedger' ? 'active' : '' }} ">
-                                {{ __('Customer Ledger') }}
+                                {{ __('message.customer_ledger') }} ({{__('message.customer_ledger', [], $secondary_locale)}})
                             </a>
                         </div>
 
                     </div>
                 </div>
                 <div class="modal-footer">
-                <button  type="button" class="btn btn-danger float-right" data-dismiss="modal">Close</button>
+                <button  type="button" class="btn btn-danger float-right" data-dismiss="modal"> {{ __('message.close') }} ({{__('message.close', [], $secondary_locale)}})</button>
                 </div>
             </div>
             </div>

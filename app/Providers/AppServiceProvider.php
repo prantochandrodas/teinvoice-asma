@@ -41,7 +41,16 @@ class AppServiceProvider extends ServiceProvider {
         });
 
         Schema::defaultStringLength(191);
-
+        $app = Application::first();
+        $secondary_locale = session()->get('secondary_locale');
+        if (!$secondary_locale){
+            $secondary_locale='ar';
+            if ($app->locale == "ar"){
+                $secondary_locale='en';
+            }
+            session()->put('secondary_locale', $secondary_locale);
+        }
+        View::share('secondary_locale', $secondary_locale);
         View::share('application', Application::first());
 
     }

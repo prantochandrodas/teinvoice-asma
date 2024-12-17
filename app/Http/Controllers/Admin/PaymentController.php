@@ -46,13 +46,16 @@ class PaymentController extends Controller
         }
     }
 
+   
+
+
     public function salePaymentPrint(Request $request, $id)
     {
-
+        $type = 0;
         //    dd($id);
         $data = Payment::with(['saleInfo', 'customer'])->find($id);
-
-        return view('admin.sales_payment_list.print', compact('data'));
+        $previous_route = url()->previous();
+        return view('admin.sales_payment_list.print', compact('data','previous_route','type'));
     }
 
 

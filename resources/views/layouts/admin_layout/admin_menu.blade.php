@@ -97,10 +97,10 @@
 <li class="nav-item">
     <a href="#" class="btn btn-secondary nav-link "
         data-toggle="modal" data-target="#reportMenuModal"
-        style="height: 2rem !important; margin: 0 2px !important;  background: #0077b5">
+        style="height: 4rem !important; margin: 0 2px !important;  background: #0077b5">
         <span class="text-white">
             <i class="fas fa-file-alt "></i>
-            {{ __('message.report') }}
+            {{ __('message.report') }} <br> ({{__('message.report', [], $secondary_locale)}})
             <i class="fas fa-chevron-down"></i>
         </span>
     </a>
@@ -114,10 +114,10 @@
 <li class="nav-item">
     <a  href="#" class="btn  nav-link"
         data-toggle="modal" data-target="#settingsMenuModal"
-        style="height: 2rem !important; margin: 0 2px !important;  background-color: #3b2b72">
+        style="height: 4rem !important; margin: 0 2px !important;  background-color: #3b2b72">
         <span class="text-white">
             <i class="fas fa-cogs fa-lg "></i>
-            {{ __('message.settings') }}
+            {{ __('message.settings') }} <br> ({{__('message.settings', [], $secondary_locale)}})
             <i class="fas fa-chevron-down"></i>
         </span>
     </a>
@@ -125,8 +125,8 @@
 @endif
 
 <li class="nav-item">
-    <a href="{{ route('admin.home') }}" class="btn " style="margin: 0 2px !important; background-color: #3a5890; color:white">
-        Session Bills
+    <a href="{{ route('admin.home') }}" class="btn " style="height: 4rem !important; margin: 0 2px !important; background-color: #3a5890; color:white">
+        {{ __('message.session_bills') }} <br> ({{__('message.session_bills', [], $secondary_locale)}})
     </a>
 </li>
 <!--<li class="nav-item">
@@ -134,22 +134,22 @@
 </li>--->
 
 <li class="nav-item">
-    <a href="{{ route('admin.item.index') }}" class="btn" style="margin: 0 2px !important; background-color: #FF5733; color:white" >
-        {{ __('message.add_item') }}
+    <a href="{{ route('admin.item.index') }}" class="btn" style="margin: 0 2px !important; padding:3px 1px!important; background-color: #FF5733; color:white" >
+        {{ __('message.add_item') }} <br> ({{__('message.add_item', [], $secondary_locale)}})
     </a>
 </li>
 <li class="nav-item">
     <a href="{{ route('admin.buy-product-entry.index') }}"
                         class="btn btn-success btn-block {{ $child_menu == 'buy_product_list' ? 'active' : '' }} ">
-                            Buy Product Report
+                        {{ __('message.buy_product_report') }} <br> ({{__('message.buy_product_report', [], $secondary_locale)}})
                         </a>
 </li>
 
 <li class="nav-item dropdown">
     <a id="dropdownSubMenu1" class="nav-link dropdown-toggle btn btn-secondary" href="#"
         data-toggle="dropdown" aria-haspopup="true"
-        aria-expanded="false" style="height: 2rem !important; margin: 0 2px !important">
-        <span class="text-white"> {{ __('message.language') }}  </span>
+        aria-expanded="false" style="height: 4rem !important; margin: 0 2px !important">
+        <span class="text-white"> {{ __('message.language') }}  <br> ({{__('message.language', [], $secondary_locale)}})</span>
     </a>
     <ul aria-labelledby="dropdownSubMenu1" class="dropdown-menu border-0 shadow">
       <li><a href="{{ route('admin.lang', 'en') }}" class="dropdown-item {{ $application->locale == "en" ? 'active':'' }}">English</a></li>
