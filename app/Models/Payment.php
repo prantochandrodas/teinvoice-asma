@@ -12,7 +12,7 @@ class Payment extends Model
     protected $guarded=[];
 
     public function saleInfo() {
-        return $this->belongsTo(Sale::class);
+        return $this->belongsTo(Sale::class,'sale_id');
     }
 
     public function customer() {

@@ -116,6 +116,8 @@
                                             <th  class="text-center"> Grand Amount </th>
                                             <th  class="text-center"> Discount Amount </th>
                                             <th  class="text-center"> Tax Amount </th>
+                                            <th  class="text-center"> Pay Amount  </th>
+                                            <th  class="text-center"> Due Amount  </th>
                                             <th  class="text-center"> Final Amount  </th>
                                             <th  class="text-center"> Purchase  Amount  </th>
                                             <th  class="text-center"> Purchase  TAX Amount  </th>
@@ -234,6 +236,8 @@
                         { data: 'grand_amount', name: 'grand_amount' , class : "text-center"},
                         { data: 'discount_amount', name: 'discount_amount' , class : "text-center"},
                         { data: 'tax_amount', name: 'tax_amount' , class : "text-center"},
+                        { data: 'pay_amount', name: 'pay_amount' , class : "text-center"},
+                        { data: 'due_payment', name: 'due_payment' , class : "text-center"},
                         { data: 'final_amount', name: 'final_amount' , class : "text-center"},
                         { data: 'total_unit_cost', name: 'total_unit_cost' , class : "text-center"},
                         { data: 'total_purchase_tax', name: 'total_purchase_tax' , class : "text-center"},

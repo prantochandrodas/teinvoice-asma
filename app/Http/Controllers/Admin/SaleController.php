@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
+
 use Carbon\Carbon;
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
@@ -24,10 +25,12 @@ use Salla\ZATCA\Tags\InvoiceTotalAmount;
 use Salla\ZATCA\Tags\Seller;
 use Salla\ZATCA\Tags\TaxNumber;
 
-class SaleController extends Controller {
+class SaleController extends Controller
+{
 
     /** Add Cart Item */
-    public function addCartSaleItem(Request $request) {
+    public function addCartSaleItem(Request $request)
+    {
 
         if ($request->ajax()) {
             $user_id      = $this->userId();
@@ -59,9 +62,7 @@ class SaleController extends Controller {
                             ]);
                             $cart_flag = 1;
                         }
-
                     }
-
                 }
 
                 if ($cart_flag == 0) {
@@ -77,7 +78,6 @@ class SaleController extends Controller {
                         'associatedModel' => $item,
                     ]);
                 }
-
             }
 
             $cart      = \Cart::session($this->userId())->getContent()->sortBy('id');
@@ -93,11 +93,11 @@ class SaleController extends Controller {
 
             return view('admin.sale.saleCartItem', $data);
         }
-
     }
 
     /** Add Cart Item via barcode */
-    public function addCartSaleItemBarcode(Request $request) {
+    public function addCartSaleItemBarcode(Request $request)
+    {
 
         if ($request->ajax()) {
 
@@ -125,9 +125,7 @@ class SaleController extends Controller {
                             ]);
                             $cart_flag = 1;
                         }
-
                     }
-
                 }
 
                 if ($cart_flag == 0) {
@@ -143,7 +141,6 @@ class SaleController extends Controller {
                         'associatedModel' => $item,
                     ]);
                 }
-
             }
 
             $cart      = \Cart::session($this->userId())->getContent()->sortBy('id');
@@ -159,11 +156,11 @@ class SaleController extends Controller {
 
             return view('admin.sale.saleCartItem', $data);
         }
-
     }
 
     /** Add Other Cart Item */
-    public function addCartOtherSaleItem(Request $request) {
+    public function addCartOtherSaleItem(Request $request)
+    {
 
         if ($request->ajax()) {
 
@@ -195,11 +192,11 @@ class SaleController extends Controller {
 
             return view('admin.sale.saleCartItem', $data);
         }
-
     }
 
     /** Remove Cart Item*/
-    public function removeCartSaleItem(Request $request) {
+    public function removeCartSaleItem(Request $request)
+    {
 
         if ($request->ajax()) {
             $user_id = $this->userId();
@@ -220,11 +217,11 @@ class SaleController extends Controller {
 
             return view('admin.sale.saleCartItem', $data);
         }
-
     }
 
     /** Remove Cart Item*/
-    public function deleteAllCartSaleItem(Request $request) {
+    public function deleteAllCartSaleItem(Request $request)
+    {
 
         if ($request->ajax()) {
             $user_id = $this->userId();
@@ -244,11 +241,11 @@ class SaleController extends Controller {
 
             return view('admin.sale.saleCartItem', $data);
         }
-
     }
 
     /** Update Other Item Name */
-    public function updateCartSaleItemName(Request $request) {
+    public function updateCartSaleItemName(Request $request)
+    {
 
         if ($request->ajax()) {
             $user_id   = $this->userId();
@@ -275,11 +272,11 @@ class SaleController extends Controller {
 
             return view('admin.sale.saleCartItem', $data);
         }
-
     }
 
     /** Update Other Item Price */
-    public function updateCartSaleItemPrice(Request $request) {
+    public function updateCartSaleItemPrice(Request $request)
+    {
 
         if ($request->ajax()) {
             $user_id    = $this->userId();
@@ -303,11 +300,11 @@ class SaleController extends Controller {
 
             return view('admin.sale.saleCartItem', $data);
         }
-
     }
 
     /** Update Other Item Price */
-    public function updateCartSaleItemQuantity(Request $request) {
+    public function updateCartSaleItemQuantity(Request $request)
+    {
 
         if ($request->ajax()) {
             $user_id       = $this->userId();
@@ -334,11 +331,11 @@ class SaleController extends Controller {
 
             return view('admin.sale.saleCartItem', $data);
         }
-
     }
 
     /** Update Other Item Price */
-    public function updateCartSaleItemAmount(Request $request) {
+    public function updateCartSaleItemAmount(Request $request)
+    {
 
         if ($request->ajax()) {
             $user_id    = $this->userId();
@@ -362,13 +359,13 @@ class SaleController extends Controller {
 
             return view('admin.sale.saleCartItem', $data);
         }
-
     }
 
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
 
 
-        // dd($request->all());
+
         $validator = Validator::make($request->all(), [
             'bill_type'        => 'sometimes',
             'bill_no'          => 'sometimes',
@@ -379,14 +376,22 @@ class SaleController extends Controller {
             'discount_amount'  => 'required',
             'total_tax_amount' => 'required',
             'total_amount'     => 'required',
-            'pay_amount'     => 'required',
+            // 'pay_amount'     => 'required',
             'customer_id'      => 'sometimes',
             'note'             => 'sometimes',
         ]);
 
         if ($validator->fails()) {
+        
             return redirect()->back()->withInput()->withErrors($validator);
         }
+
+
+        // if ($request->due_payment < 0) {
+        //     $this->setMessage('The payment amount cannot be greater than the due payment.', 'danger');
+        //     return back();
+        // }
+
 
         \DB::beginTransaction();
         try {
@@ -397,7 +402,7 @@ class SaleController extends Controller {
             $customer_name   = $request->input('customer_name');
             $customer_vat_no = $request->input('customer_vat_no');
             $duePayment = $request->input('due_payment');
-
+            // dd($customer_id);
             if ($customer_id == '0' && !empty($customer_name) && !empty($customer_vat_no)) {
                 $customer_id = Customer::create([
                     'name'             => $request->input('customer_name'),
@@ -408,9 +413,9 @@ class SaleController extends Controller {
                     'due_payment'      => $request->input('due_payment'),
                     'created_admin_id' => $admin_id,
                 ])->id;
-            }elseif($customer_id !== '0'){
-                $updateCustomer=Customer::find($customer_id);
-                $newDuePayment=$updateCustomer->due_payment + $duePayment;
+            } elseif ($customer_id) {
+                $updateCustomer = Customer::find($customer_id);
+                $newDuePayment = $updateCustomer->due_payment + $duePayment;
                 $updateCustomer->update([
                     'due_payment' => $newDuePayment
                 ]);
@@ -438,30 +443,50 @@ class SaleController extends Controller {
                 'created_admin_id' => $admin_id,
             ];
 
-            
+
             $sale = Sale::create($sale_data);
 
-            
+
             $ref = Payment::latest()->first();
 
             if ($ref) {
-                $invoice_no = 'PAY_00' . $ref->id + 1;
+                $invoice_no = 'PAY_00' . ($ref->id + 1);
             } else {
                 $invoice_no = 'PAY_00';
             }
-            $payment_data=[
-                'sale_id' => $sale->id,
-                'customer_id' => $customer_id,
-                'payment_type' => $request->input('payment_type'),
-                'type' => 1,
-                'voucher_number' => $invoice_no,
-                'pay_amount' => $request->input('pay_amount'),
-                'payment_date' => Carbon::today()->toDateString(),
-            ];
-             Payment::create($payment_data);
-           
-           
-             if ($sale) {
+
+            if ($customer_id) {
+                $pay_amount = $request->input('pay_amount') ?? 0;
+                if($pay_amount>0){
+                    $payment_data = [
+                        'sale_id' => $sale->id,
+                        'customer_id' => $customer_id,
+                        'payment_type' => $request->input('payment_type'),
+                        'type' => 1,
+                        'voucher_number' => $invoice_no,
+                        'pay_amount' => $pay_amount,
+                        'payment_date' => Carbon::today()->toDateString(),
+                    ];
+                    
+                    Payment::create($payment_data);
+                }
+            
+            } else {
+                $payment_data = [
+                    'sale_id' => $sale->id,
+                    'payment_type' => $request->input('payment_type'),
+                    'type' => 1,
+                    'voucher_number' => $invoice_no,
+                    'pay_amount' => $request->input('total_amount'),
+                    'payment_date' => Carbon::today()->toDateString(),
+                ];
+                
+                Payment::create($payment_data);
+            }
+
+
+
+            if ($sale) {
 
                 /**
                  * Sale Details
@@ -486,16 +511,16 @@ class SaleController extends Controller {
                 $this->setMessage('Sale  Failed', 'danger');
                 return redirect()->back()->withInput();
             }
-
         } catch (\Exception $e) {
             \DB::rollback();
+           
             $this->setMessage('Database Error', 'danger');
             return redirect()->back()->withInput();
         }
-
     }
 
-    public function salePrint(Request $request, Sale $sale, $type = 0) {
+    public function salePrint(Request $request, Sale $sale, $type = 0)
+    {
         $sale->load([
             'customer',
             'sale_details.item',
@@ -518,7 +543,8 @@ class SaleController extends Controller {
         return view('admin.sale.salePrint', compact('sale', 'page_title', 'previous_route', 'type', 'generatedString'));
     }
 
-    public function printPreview(Request $request) {
+    public function printPreview(Request $request)
+    {
 
         $application = Application::first();
 
@@ -551,7 +577,8 @@ class SaleController extends Controller {
         return view('admin.sale.salePrintPreview', $data);
     }
 
-    public function printPreviewPrint(Request $request) {
+    public function printPreviewPrint(Request $request)
+    {
 
         $application = Application::first();
 
@@ -584,7 +611,8 @@ class SaleController extends Controller {
         return view('admin.sale.salePrintPreviewPrint', $data);
     }
 
-    public function searchBill(Request $request) {
+    public function searchBill(Request $request)
+    {
 
         if ($request->ajax()) {
             $sale = Sale::where('bill_no', $request->search_bill)
@@ -594,22 +622,23 @@ class SaleController extends Controller {
         }
 
         return response()->json([]);
-
     }
 
-    public function list(Request $request) {
+    public function list(Request $request)
+    {
         $data = [];
 
         $data['main_menu']  = 'booking';
         $data['child_menu'] = 'bookingParcellist';
         $data['page_title'] = 'Sales  List';
         $data['customers']  = Customer::active()->get();
-        $data['branches']  = Branch::where('active_status',1)->get();
+        $data['branches']  = Branch::where('active_status', 1)->get();
 
         return view('admin.sale.saleList', $data);
     }
 
-    public function getList(Request $request) {
+    public function getList(Request $request)
+    {
 
         $model = Sale::with(['sale_details'])
             ->where(function ($query) use ($request) {
@@ -618,10 +647,10 @@ class SaleController extends Controller {
                 $customer_id = $request->input('customer_id');
                 $from_date   = $request->input('from_date');
                 $to_date     = $request->input('to_date');
-                if($branch){
+                if ($branch) {
                     $query->where('branch_id', $branch);
                 }
-                if($payment){
+                if ($payment) {
                     $query->where('payment_type', $payment);
                 }
                 if ($request->has('customer_id') && !is_null($customer_id) && $customer_id != '') {
@@ -635,7 +664,6 @@ class SaleController extends Controller {
                 if ($request->has('to_date') && !is_null($to_date) && $to_date != '') {
                     $query->where('date', '<=', $to_date);
                 }
-
             })
             ->orderBy('id', 'desc')
             ->select();
@@ -670,6 +698,10 @@ class SaleController extends Controller {
             ->editColumn('final_amount', function ($data) {
                 return number_format($data->final_amount, 2);
             })
+            ->editColumn('pay_amount', function ($data) {
+                $payAmount=$data->final_amount - $data->due_payment;
+                return number_format($payAmount,2);
+            })
             ->addColumn('action', function ($data) {
                 $button = '<a href="' . route('admin.sale.salePrint', [$data->id, 1]) . '" class="btn btn-success btn-sm" title="Print Sale Item"
                         target="_blank">
@@ -691,7 +723,8 @@ class SaleController extends Controller {
             ->make(true);
     }
 
-    public function printAll(Request $request) {
+    public function printAll(Request $request)
+    {
         $from_date = $request->input('from_date');
         $to_date   = $request->input('to_date');
 
@@ -710,7 +743,6 @@ class SaleController extends Controller {
                 if ($request->has('to_date') && !is_null($to_date) && $to_date != '') {
                     $query->where('date', '<=', $to_date);
                 }
-
             })
             ->orderBy('id', 'desc')
             ->get();
@@ -720,7 +752,8 @@ class SaleController extends Controller {
         return view('admin.sale.allSalePrint', compact('sales', 'from_date', 'to_date'));
     }
 
-    public function oldList(Request $request) {
+    public function oldList(Request $request)
+    {
         $data = [];
 
         $data['main_menu']  = 'booking';
@@ -731,7 +764,8 @@ class SaleController extends Controller {
         return view('admin.sale.saleList', $data);
     }
 
-    public function oldGetList(Request $request) {
+    public function oldGetList(Request $request)
+    {
 
         $model = Sale::with(['sale_details'])
             ->where(function ($query) use ($request) {
@@ -750,7 +784,6 @@ class SaleController extends Controller {
                 if ($request->has('to_date') && !is_null($to_date) && $to_date != '') {
                     $query->where('date', '<=', $to_date);
                 }
-
             })
             ->orderBy('id', 'desc')
             ->select();
@@ -796,7 +829,8 @@ class SaleController extends Controller {
     }
 
     /** Protected Function */
-    protected function userId() {
+    protected function userId()
+    {
 
         if (auth()->guard('admin')->user()) {
             $userId = auth()->guard('admin')->user()->id;
@@ -806,5 +840,4 @@ class SaleController extends Controller {
 
         return $userId;
     }
-
 }

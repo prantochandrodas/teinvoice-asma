@@ -28,13 +28,14 @@
                                 <thead>
                                     <tr>
                                         <th width="5%" class="text-center"> SL </th>
+                                        <th width="10%" class="text-center"> Voucher Number</th>
+                                        
+                                        <th width="10%" class="text-center"> Payment Date</th>
                                         <th width="20%" class="text-center">Customer Name </th>
                                         <th width="10%" class="text-center"> Customer Phone </th>
                                         <th width="10%" class="text-center"> Payment Type </th>
-                                        <th width="10%" class="text-center"> Voucher Number</th>
-                                        <th width="10%" class="text-center"> Payment Date</th>
                                         <th width="10%" class="text-center"> Payment Amount</th>
-
+                                        <th width="10%" class="text-center"> Action</th>
                                     </tr>
                                 </thead>
                             </table>
@@ -65,6 +66,20 @@
                         searchable: false
                     },
                     {
+                        data: 'voucher_number',
+                        name: 'voucher_number',
+                        class: "text-center"
+                    },
+                    {
+                        data: 'payment_date',
+                        name: 'payment_date',
+                        class: "text-center",
+                        render: function(data) {
+                            return data ? new Date(data).toLocaleDateString('en-GB') :
+                            ''; // Format date as d/m/y
+                        }
+                    },
+                    {
                         data: 'customer_name',
                         name: 'customer_name',
                         class: "text-center"
@@ -80,22 +95,15 @@
                         class: "text-center"
                     },
                     {
-                        data: 'voucher_number',
-                        name: 'voucher_number',
+                        data: 'pay_amount',
+                        name: 'pay_amount',
                         class: "text-center"
                     },
                     {
-                        data: 'payment_date',
-                        name: 'payment_date',
-                        class: "text-center",
-                        render: function(data) {
-                            return data ? new Date(data).toLocaleDateString('en-GB') :
-                            ''; // Format date as d/m/y
-                        }
-                    },
-                    {
-                        data: 'pay_amount',
-                        name: 'pay_amount',
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false,
                         class: "text-center"
                     }
                 ]

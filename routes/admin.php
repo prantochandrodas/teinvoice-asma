@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BranchController;
 use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\CustomerLedgerController;
 use App\Http\Controllers\Admin\DueCustomer;
 use App\Http\Controllers\Admin\DueCustomerController;
 use App\Http\Controllers\Admin\DuePaymenController;
@@ -104,8 +105,17 @@ Route::group(['middleware' => ['admin', 'setLocalization'], 'prefix' => 'admin']
     //sales payment list 
     Route::get('/sale-payment', [PaymentController::class, 'salePaymentList'])->name('sale-payment.salePaymentList');
     Route::get('/sale-payment/getdata', [PaymentController::class, 'salePaymentGetdata'])->name('sale-payment.getdata');
-
+    Route::get('/sale-payment/print/{id}', [PaymentController::class, 'salePaymentPrint'])->name('sale-payment.salePrint');
+    
+    //customer ledger
+    Route::get('/customer-ledger', [CustomerLedgerController::class, 'index'])->name('customer.ledger');
+    Route::get('/customer-ledger/getdata', [CustomerLedgerController::class, 'getdata'])->name('customer.ledger.getdata');
+    Route::get('/customer-ledger/excel', [CustomerLedgerController::class, 'excel'])->name('customer.ledger.excel');
+    Route::get('/customer-ledger/pdf', [CustomerLedgerController::class, 'pdf'])->name('customer.ledger.pdf');
+    Route::get('/customer-ledger/print', [CustomerLedgerController::class, 'print'])->name('customer.ledger.print');
     // due payment 
+
+
     Route::get('/due-payment-list', [PaymentController::class, 'duePaymentList'])->name('due-payment.duePaymentList');
     Route::get('/due-payment/getdata', [PaymentController::class, 'duePaymentGetdata'])->name('due-payment.getdata');
 

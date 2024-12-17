@@ -541,6 +541,15 @@
                     <td colspan="4" class="text-end">Net Total with TAX (اإلجمالي الصافي مع الض) :</td>
                     <td>SR {{ number_format($sale->final_amount, 2) }}</td>
                 </tr>
+                <tr>
+                    <td colspan="4" class="text-end">Pay Amount (مبلغ الدفع):</td>
+                    <td>SR {{ number_format($sale->final_amount - $sale->due_payment, 2) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="text-end">Due Amount (المبلغ المستحق):</td>
+                    <td>SR {{ number_format($sale->due_payment, 2) }}</td>
+                </tr>
+               
             </tfoot>
         </table>
 

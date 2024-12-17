@@ -70,8 +70,11 @@ class DuePaymenController extends Controller
             'pay_amount' => $request->input('pay_amount'),
             'payment_date' => Carbon::today()->toDateString(),
         ];
-        Payment::create($payment_data);
-        $this->setMessage('payment Done.', 'success');
-        return redirect()->route('admin.due-payment.index');
+        $data= Payment::create($payment_data);
+        // $this->setMessage('payment Done.', 'success');
+        // return redirect()->route('admin.due-payment.index');
+        // $data = Payment::with(['saleInfo', 'customer'])->find($id);
+
+        return view('admin.sales_payment_list.print', compact('data'));
     }
 }

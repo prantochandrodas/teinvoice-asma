@@ -166,6 +166,27 @@
                             Stock Report
                         </a>
                     </div>
+
+                    <div class="col-md-6" style="padding-bottom: 10px">
+                        <a href="{{ route('admin.sale-payment.salePaymentList') }}"
+                            class="btn btn-success btn-block {{ $child_menu == 'SalesPaymentList' ? 'active' : '' }} ">
+                            {{ __('Sale Payment List') }}
+                        </a>
+                    </div>
+
+                    <div class="col-md-6" style="padding-bottom: 10px">
+                        <a href="{{ route('admin.due-payment.duePaymentList') }}"
+                            class="btn btn-success btn-block {{ $child_menu == 'DuePaymentList' ? 'active' : '' }} ">
+                            {{ __('Due Payment List') }}
+                        </a>
+                    </div>
+
+                    <div class="col-md-6" style="padding-bottom: 10px">
+                        <a href="{{ route('admin.due-customer.index') }}"
+                            class="btn btn-success btn-block {{ $child_menu == 'DueList' ? 'active' : '' }} ">
+                            {{ __('Customer Due-List') }}
+                        </a>
+                    </div>
                     {{-- <div class="col-md-6" style="padding-bottom: 10px">
                         <a href="{{ route('admin.buy-product-entry.index') }}"
                         class="btn btn-success btn-block {{ $child_menu == 'buy_product_list' ? 'active' : '' }} ">
@@ -241,12 +262,12 @@
                             </div>
                         @endif
 
-                        <div class="col-md-6" style="padding-bottom: 10px">
+                        {{-- <div class="col-md-6" style="padding-bottom: 10px">
                             <a href="{{ route('admin.due-customer.index') }}"
                                 class="btn btn-success btn-block {{ $child_menu == 'DueList' ? 'active' : '' }} ">
                                 {{ __('Customer Due-List') }}
                             </a>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-6" style="padding-bottom: 10px">
                             <a href="{{ route('admin.due-payment.index') }}"
@@ -255,19 +276,19 @@
                             </a>
                         </div>
 
-                        <div class="col-md-6" style="padding-bottom: 10px">
+                        {{-- <div class="col-md-6" style="padding-bottom: 10px">
                             <a href="{{ route('admin.sale-payment.salePaymentList') }}"
                                 class="btn btn-success btn-block {{ $child_menu == 'SalesPaymentList' ? 'active' : '' }} ">
                                 {{ __('Sale Payment List') }}
                             </a>
-                        </div>
+                        </div> --}}
 
-                        <div class="col-md-6" style="padding-bottom: 10px">
+                        {{-- <div class="col-md-6" style="padding-bottom: 10px">
                             <a href="{{ route('admin.due-payment.duePaymentList') }}"
                                 class="btn btn-success btn-block {{ $child_menu == 'DuePaymentList' ? 'active' : '' }} ">
                                 {{ __('Due Payment List') }}
                             </a>
-                        </div>
+                        </div> --}}
 
 
                         @if ($authAdmin->can('supplier.list') || $defaultAdmin)
@@ -314,6 +335,13 @@
                             <a href="{{ route('admin.branches.index') }}"
                                 class="btn btn-success btn-block {{ $child_menu == 'branch' ? 'active' : '' }} ">
                                 {{ __('Branch') }}
+                            </a>
+                        </div>
+
+                        <div class="col-md-6" style="padding-bottom: 10px">
+                            <a href="{{ route('admin.customer.ledger') }}"
+                                class="btn btn-success btn-block {{ $child_menu == 'customerLedger' ? 'active' : '' }} ">
+                                {{ __('Customer Ledger') }}
                             </a>
                         </div>
 

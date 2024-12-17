@@ -9,7 +9,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class PaymentController extends Controller
 {
-    public function salePaymentList ()
+    public function salePaymentList()
     {
 
         $data               = [];
@@ -22,20 +22,41 @@ class PaymentController extends Controller
     public function salePaymentGetdata(Request $request)
     {
         if ($request->ajax()) {
-            $data = Payment::with('customer')->where('type', 1)
-            ->get();
+            $data = Payment::with(['customer', 'saleInfo'])->where('type', 1)
+                ->get();
             return DataTables::of($data)
-            ->addColumn('customer_name', function ($row){
-                return $row->customer ? $row->customer->name : '';
-            })
-            ->addColumn('customer_phone', function ($row){
-                return $row->customer ? $row->customer->phone : '';
-            })
+                ->addColumn('bill_no', function ($row) {
+                    return $row->saleInfo ? $row->saleInfo->bill_no : '';
+                })
+                ->addColumn('customer_name', function ($row) {
+                    return $row->customer ? $row->customer->name : 'N/A';
+                })
+                ->addColumn('customer_phone', function ($row) {
+                    return $row->customer ? $row->customer->phone : 'N/A';
+                })
+                ->addColumn('action', function ($data) {
+                    $button = '<a href="' . route('admin.sale-payment.salePrint', [$data->id]) . '" class="btn btn-success btn-sm" title="Print Sale Item"
+                        target="_blank">
+                    <i class="fas fa-print"></i>
+                    </a>';
+                    return $button;
+                })
+                ->rawColumns(['action'])
                 ->make(true);
         }
     }
 
-    public function duePaymentList ()
+    public function salePaymentPrint(Request $request, $id)
+    {
+
+        //    dd($id);
+        $data = Payment::with(['saleInfo', 'customer'])->find($id);
+
+        return view('admin.sales_payment_list.print', compact('data'));
+    }
+
+
+    public function duePaymentList()
     {
 
         $data               = [];
@@ -48,16 +69,27 @@ class PaymentController extends Controller
     public function duePaymentGetdata(Request $request)
     {
         if ($request->ajax()) {
-            $data = Payment::with('customer')->where('type', 2)
-            ->get();
+            $data = Payment::with(['customer', 'saleInfo'])->where('type', 2)
+                ->get();
             return DataTables::of($data)
-            ->addColumn('customer_name', function ($row){
-                return $row->customer ? $row->customer->name : '';
-            })
-            ->addColumn('customer_phone', function ($row){
-                return $row->customer ? $row->customer->phone : '';
-            })
-            ->make(true);
+                ->addColumn('bill_no', function ($row) {
+                    return $row->saleInfo ? $row->saleInfo->bill_no : '';
+                })
+                ->addColumn('customer_name', function ($row) {
+                    return $row->customer ? $row->customer->name : 'N/A';
+                })
+                ->addColumn('customer_phone', function ($row) {
+                    return $row->customer ? $row->customer->phone : 'N/A';
+                })
+                ->addColumn('action', function ($data) {
+                    $button = '<a href="' . route('admin.sale-payment.salePrint', [$data->id]) . '" class="btn btn-success btn-sm" title="Print Sale Item"
+                        target="_blank">
+                    <i class="fas fa-print"></i>
+                    </a>';
+                    return $button;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
         }
     }
 }

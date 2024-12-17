@@ -100,7 +100,7 @@
                                     <div class="col-md-4" style="margin-top: 5px">
 
                                         <select name="branch_id" id="branch_id" class="form-control select2"
-                                            data-placeholder="Select an Branch" data-tags="true" data-allow-clear="true">
+                                            data-placeholder="Select an Branch" data-tags="true" data-allow-clear="true" required>
                                             <option></option>
                                             @foreach ($branches as $branch)
                                                 <option value="{{ $branch->id }}">
@@ -280,6 +280,7 @@
                                             value="{{ old('pay_amount') }}" class="form-control "
                                             placeholder="{{ __('Pay Amount') }}">
                                     </div>
+                                    
                                     {{-- due_payment --}}
                                     <div class="col-md-2" style="margin-top: 5px; display:none" id="due_payment_label">
                                         <label for="due_payment">{{ __('Due Payment') }} </label>
@@ -290,8 +291,6 @@
                                             placeholder="{{ __('Due Payment') }}">
                                     </div>
                                     
-
-
                                     <div class="col-md-6" style="margin-top: 5px">
                                         <button type="button"
                                             class="btn btn-danger delete-all-cart-item">{{ __('message.delete_all') }}</button>
@@ -391,17 +390,20 @@
                         @endforeach --}}
                     </div>
                     <div class="row" style="padding: 2px; max-height: 750px;">
-                        <a href="{{ route('admin.buy-product-entry.index') }}" class="btn btn-success">Buy Product
+                        <a href="{{ route('admin.buy-product-entry.index') }}" class="btn btn-success">شراء تقرير المنتج <br> Buy Product
                             Report</a>
                     </div>
                     <div class="row" style="padding: 2px; max-height: 750px;">
-                        <a href="{{ route('admin.expense-head.index') }}" class="btn btn-success">Expense Head</a>
+                        <a href="{{ route('admin.expense-head.index') }}" class="btn btn-success">رئيس النفقات <br> Expense Head</a>
                     </div>
                     <div class="row" style="padding: 2px; max-height: 750px;">
-                        <a href="{{ route('admin.expense.index') }}" class="btn btn-success">Expense</a>
+                        <a href="{{ route('admin.expense.index') }}" class="btn btn-success">المصروفات <br> Expense</a>
                     </div>
                     <div class="row" style="padding: 2px; max-height: 750px;">
-                        <a href="{{ route('admin.customer.index') }}" class="btn btn-success">customer</a>
+                        <a href="{{ route('admin.customer.index') }}" class="btn btn-success">عميل <br> customer</a>
+                    </div>
+                    <div class="row" style="padding: 2px; max-height: 750px;">
+                        <a href="{{ route('admin.due-payment.index') }}" class="btn btn-success">الدفع المستحق <br> Due Payment</a>
                     </div>
                 </div>
             </div>
