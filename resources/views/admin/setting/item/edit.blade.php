@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{ __('message.items') }}</h1>
+                    <h1 class="m-0 text-dark">{{ __('message.items') }} ({{__('message.items', [], $secondary_locale)}})</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.item.index') }}">{{ __('message.item') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('message.edit') }}</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.item.index') }}">{{ __('message.item') }} ({{__('message.item', [], $secondary_locale)}})</a></li>
+                        <li class="breadcrumb-item active">{{ __('message.edit') }} ({{__('message.edit', [], $secondary_locale)}})</li>
                     </ol>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="col-md-12">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">Edit Item </h3>
+                            <h3 class="card-title"> {{ __('message.edit') }} {{ __('message.item') }}({{__('message.edit', [], $secondary_locale)}} {{__('message.item', [], $secondary_locale)}})</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                         class="fas fa-minus"></i>
@@ -42,7 +42,7 @@
                                         <div class="card-body row">
 
                                             <div class="form-group col-md-6">
-                                                <label for="code">Code <code>*</code>  </label>
+                                                <label for="code">{{ __('message.code') }} ({{__('message.code', [], $secondary_locale)}}) <code>*</code>  </label>
                                                 <input type="text" name="code" id="code" value="{{ $item->code ?? old('code') }}"
                                                 class="form-control @error('code') is-invalid @enderror" placeholder="Enter Code" required>
                                                 @error('code')
@@ -51,7 +51,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="name">Name <code>*</code> </label>
+                                                <label for="name">{{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}}) <code>*</code> </label>
                                                 <input type="text" name="name" id="name"  value="{{ $item->name ?? old('name') }}"
                                                     class="form-control @error('name') is-invalid @enderror"  placeholder="Enter Name" required>
                                                 @error('name')
@@ -62,7 +62,7 @@
                                             
                                             
                                             <div class="form-group col-md-3">
-                                                <label for="price">Price </label>
+                                                <label for="price">{{ __('message.price') }} ({{__('message.price', [], $secondary_locale)}}) </label>
                                                 <input type="number" name="price" id="price"  value="{{  $item->price ?? old('price') }}"
                                                     step="any" 
                                                     class="form-control @error('price') is-invalid @enderror"  placeholder="Enter Price" required>
@@ -71,7 +71,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group col-md-3">
-                                                <label for="tax">Tax %</label>
+                                                <label for="tax">{{ __('message.tax') }} ({{__('message.tax', [], $secondary_locale)}}) %</label>
                                                 <input type="number" name="tax" id="tax"  value="{{  $item->tax ?? old('tax') }}"
                                                      step="any" 
                                                     class="form-control @error('tax') is-invalid @enderror"  placeholder="Enter Tax" readonly required>
@@ -80,7 +80,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group col-md-3">
-                                                <label for="price_without_tax">Price Without Tax</label>
+                                                <label for="price_without_tax">{{ __('message.price_without_tax') }} ({{__('message.price_without_tax', [], $secondary_locale)}})</label>
                                                 <input type="number" name="price_without_tax" id="price_without_tax"
                                                     value="{{  $item->price_without_tax ?? old('price_without_tax') }}"
                                                     class="form-control @error('price_without_tax') is-invalid @enderror"
@@ -91,7 +91,7 @@
                                                 @enderror
                                             </div>
                                             <div class="form-group col-md-3">
-                                                <label for="purchase_price">Purchase Price </label>
+                                                <label for="purchase_price">{{ __('message.purchase_price') }} ({{__('message.purchase_price', [], $secondary_locale)}}) </label>
                                                 <input type="number" name="purchase_price" id="purchase_price"
                                                      value="{{ $item->purchase_price ?? old('purchase_price') }}"
                                                     class="form-control @error('purchase_price') is-invalid @enderror"
@@ -105,7 +105,7 @@
                                             
                                             
                                             <div class="form-group col-md-12">
-                                                <label for="details">Details  </label>
+                                                <label for="details">{{ __('message.details') }} ({{__('message.details', [], $secondary_locale)}}) </label>
                                                 <textarea type="details" name="details" id="details"
                                                    class="form-control @error('details') is-invalid @enderror" placeholder="Details"
                                                 >{{ $item->details ?? old('details') }}</textarea>
@@ -125,7 +125,7 @@
                                             
                                             
                                             <div class="form-group col-md-6">
-                                                <label for="image">Image </label>
+                                                <label for="image">{{ __('message.image') }} ({{__('message.image', [], $secondary_locale)}}) </label>
                                                 <input type="file" name="image" id="image"  class="form-control @error('image') is-invalid @enderror"
                                                     accept="image/*" onchange="return filePreview(this, 'preview_file')" >
                                                 <div id="preview_file" style="margin-top: 10px;">
@@ -141,7 +141,7 @@
                                             </div>
                                             
                                             <div class="form-group col-md-3">
-                                                <label for="name">Date of Manufacture <code>*</code> </label>
+                                                <label for="name">{{ __('message.date_of_manufacture') }} ({{__('message.date_of_manufacture', [], $secondary_locale)}}) <code>*</code> </label>
                                                 <input type="date" name="manufacture_date" id="from_date" class="form-control"  value="{{ $item->manufacture_date ?? old('manufacture_date') }}"
                                                     class="form-control @error('manufacture_date') is-invalid @enderror"  placeholder="Enter Manufacture Date">
                                                 @error('name')
@@ -151,7 +151,7 @@
                                             
                                             
                                             <div class="form-group col-md-3">
-                                                <label for="name">Date of Expiry <code>*</code> </label>
+                                                <label for="name">{{ __('message.date_of_expiry') }} ({{__('message.date_of_expiry', [], $secondary_locale)}}) <code>*</code> </label>
                                                 <input type="date" name="expiry_date" id="from_date" class="form-control"   value="{{ $item->expiry_date ?? old('expiry_date') }}"
                                                     class="form-control @error('expiry_date') is-invalid @enderror"  placeholder="Enter Expiry Date">
                                                 @error('name')
@@ -165,8 +165,8 @@
                                         </div>
 
                                         <div class="card-footer">
-                                            <button type="submit" class="btn btn-success">Update</button>
-                                            <button type="reset" class="btn btn-primary">Reset</button>
+                                            <button type="submit" class="btn btn-success">{{ __('message.update') }} ({{__('message.update', [], $secondary_locale)}})</button>
+                                            <button type="reset" class="btn btn-primary">{{ __('message.reset') }} ({{__('message.reset', [], $secondary_locale)}})</button>
                                         </div>
                                     </form>
                                 </div>

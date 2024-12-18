@@ -5,13 +5,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">{{ __('message.items') }}</h1>
+          <h1 class="m-0 text-dark">{{ __('message.items') }} ({{__('message.items', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }}</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.item.index') }}">{{ __('message.items') }}</a></li>
-            <li class="breadcrumb-item active">{{ __('message.create') }}</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.item.index') }}">{{ __('message.items') }} ({{__('message.items', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item active">{{ __('message.create') }} ({{__('message.create', [], $secondary_locale)}})</li>
           </ol>
         </div>
       </div>
@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">{{ __('message.create_new_admins') }} </h3>
+                        <h3 class="card-title">{{ __('message.create_new_admins') }} ({{__('message.create_new_admins', [], $secondary_locale)}})</h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                     class="fas fa-minus"></i>
@@ -40,62 +40,62 @@
                                     <div class="card-body row">
 
                                         <div class="form-group col-md-6">
-                                            <label for="code">{{ __('message.code') }} <code>*</code>  </label>
+                                            <label for="code">{{ __('message.code') }} ({{__('message.code', [], $secondary_locale)}})<code>*</code>  </label>
                                             <input type="text" name="code" id="code" value="{{ old('code') }}"
-                                            class="form-control @error('code') is-invalid @enderror" placeholder="{{ __('message.code') }}" required>
+                                            class="form-control @error('code') is-invalid @enderror" placeholder="{{ __('message.code') }} ({{__('message.code', [], $secondary_locale)}})" required>
                                             @error('code')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label for="name">{{ __('message.name') }} <code>*</code> </label>
+                                            <label for="name">{{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}})<code>*</code> </label>
                                             <input type="text" name="name" id="name"  value="{{ old('name') }}"
-                                                class="form-control @error('name') is-invalid @enderror"  placeholder="{{ __('message.name') }}" required>
+                                                class="form-control @error('name') is-invalid @enderror"  placeholder="{{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}})" required>
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label for="price">{{ __('message.price') }} </label>
+                                            <label for="price">{{ __('message.price') }} ({{__('message.price', [], $secondary_locale)}})</label>
                                             <input type="number" step="any" name="price" id="price"  value="{{ old('price') }}"
-                                                class="form-control @error('price') is-invalid @enderror"  placeholder="{{ __('message.price') }}" required>
+                                                class="form-control @error('price') is-invalid @enderror"  placeholder="{{ __('message.price') }} ({{__('message.price', [], $secondary_locale)}})" required>
                                             @error('price')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label for="tax">{{ __('message.tax') }} %</label>
+                                            <label for="tax">{{ __('message.tax') }} ({{__('message.tax', [], $secondary_locale)}})%</label>
                                             <input type="number" step="any" name="tax" id="tax"  value="{{ old('tax') }}"
-                                                class="form-control @error('tax') is-invalid @enderror"  placeholder="{{ __('message.tax') }} " readonly required>
+                                                class="form-control @error('tax') is-invalid @enderror"  placeholder="{{ __('message.tax') }} ({{__('message.tax', [], $secondary_locale)}})" readonly required>
                                             @error('tax')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label for="price_without_tax">{{ __('message.price_without_tax') }}</label>
+                                            <label for="price_without_tax">{{ __('message.price_without_tax') }} ({{__('message.price_without_tax', [], $secondary_locale)}})</label>
                                             <input type="number" step="any" name="price_without_tax" id="price_without_tax"
                                                 value="{{ old('price_without_tax') }}"
                                                 class="form-control @error('price_without_tax') is-invalid @enderror"
-                                                placeholder="{{ __('message.price_without_tax') }}" readonly required >
+                                                placeholder="{{ __('message.price_without_tax') }} ({{__('message.price_without_tax', [], $secondary_locale)}})" readonly required >
                                             @error('price_without_tax')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-3">
-                                            <label for="purchase_price">{{ __('message.purchase_price') }}</label>
+                                            <label for="purchase_price">{{ __('message.purchase_price') }} ({{__('message.purchase_price', [], $secondary_locale)}})</label>
                                             <input type="number" step="any" name="purchase_price" id="purchase_price"  value="{{ old('purchase_price') }}"
                                                 class="form-control @error('purchase_price') is-invalid @enderror"
-                                                placeholder="{{ __('message.purchase_price') }}" required>
+                                                placeholder="{{ __('message.purchase_price') }} ({{__('message.purchase_price', [], $secondary_locale)}})" required>
                                             @error('purchase_price')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group col-md-12">
-                                            <label for="details">{{ __('message.details') }}  </label>
+                                            <label for="details">{{ __('message.details') }} ({{__('message.details', [], $secondary_locale)}}) </label>
                                             <textarea type="details" name="details" id="details"
                                                class="form-control @error('details') is-invalid @enderror"
-                                               placeholder="{{ __('message.details') }}"
+                                               placeholder="{{ __('message.details') }} ({{__('message.details', [], $secondary_locale)}})"
                                             >{{ old('details') }}</textarea>
                                             @error('details')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
@@ -115,7 +115,7 @@
                                         
                                         
                                         <div class="form-group col-md-6">
-                                            <label for="image">{{ __('message.image') }} </label>
+                                            <label for="image">{{ __('message.image') }} ({{__('message.image', [], $secondary_locale)}})</label>
                                             <input type="file" name="image" id="image"  class="form-control @error('image') is-invalid @enderror"
                                                 accept="image/*" onchange="return filePreview(this, 'preview_file')" >
                                             <div id="preview_file" style="margin-top: 10px;"></div>
@@ -126,12 +126,12 @@
                                         
                                         
                                         <div class="form-group col-md-3">
-                                            <label for="from_date">Date of Manufacture</label>
+                                            <label for="from_date">{{ __('message.date_of_manufacture') }} ({{__('message.date_of_manufacture', [], $secondary_locale)}})</label>
                                             <input type="date" name="manufacture_date" id="from_date" class="form-control"  value="{{ date('Y-m-d') }}"/>
                                         </div>
                                         
                                         <div class="form-group col-md-3">
-                                            <label for="from_date">Date of Expiry</label>
+                                            <label for="from_date">{{ __('message.date_of_expiry') }} ({{__('message.date_of_expiry', [], $secondary_locale)}})</label>
                                             <input type="date" name="expiry_date" id="from_date" class="form-control"  value="{{ date('Y-m-d') }}"/>
                                         </div>
                                         
@@ -141,8 +141,8 @@
                                     </div>
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-success">{{ __('message.submit') }}</button>
-                                        <button type="reset" class="btn btn-primary">{{ __('message.reset') }}</button>
+                                        <button type="submit" class="btn btn-success">{{ __('message.submit') }} ({{__('message.submit', [], $secondary_locale)}})</button>
+                                        <button type="reset" class="btn btn-primary">{{ __('message.reset') }} ({{__('message.reset', [], $secondary_locale)}})</button>
                                     </div>
                                 </form>
                             </div>

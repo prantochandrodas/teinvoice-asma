@@ -143,4 +143,6 @@ return [
     'voucher_number'           => 'ভাউচার নম্বর',
     'payment_date'           => 'অর্থপ্রদানের তারিখ',
     'payment_amount'           => 'অর্থপ্রদানের পরিমাণ',
+    'date_of_manufacture'           => 'উৎপাদন তারিখ',
+    'date_of_expiry'           => 'মেয়াদ শেষ হওয়ার তারিখ',
 ];

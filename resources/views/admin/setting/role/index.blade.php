@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">{{ __('message.roles') }}</h1>
+          <h1 class="m-0 text-dark">{{ __('message.roles') }} ({{__('message.roles', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }}</a></li>
-            <li class="breadcrumb-item active">{{ __('message.role') }}</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item active">{{ __('message.role') }} ({{__('message.role', [], $secondary_locale)}})</li>
           </ol>
         </div>
       </div>
@@ -25,10 +25,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"> {{ __('message.roles_list') }}</h3>
+                        <h3 class="card-title"> {{ __('message.roles_list') }} ({{__('message.roles_list', [], $secondary_locale)}})</h3>
                         @if (auth_admin_user_permission('role.create'))
                             <a href="{{ route('admin.role.create') }}" class="btn btn-success float-right">
-                                <i class="fa fa-pencil-alt"></i> {{ __('message.add_role') }}
+                                <i class="fa fa-pencil-alt"></i> {{ __('message.add_role') }} ({{__('message.add_role', [], $secondary_locale)}})
                             </a>
                         @endif
                     </div>
@@ -36,10 +36,10 @@
                         <table id="yajraDatatable" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th width="5%" class="text-center"> {{ __('message.serial') }} </th>
-                                    <th width="20%" class="text-center"> {{ __('message.name') }} </th>
-                                    <th width="55%" class="text-center"> {{ __('message.permission') }} </th>
-                                    <th width="20%" class="text-center"> {{ __('message.action') }} </th>
+                                    <th width="5%" class="text-center"> {{ __('message.serial') }} ({{__('message.serial', [], $secondary_locale)}})</th>
+                                    <th width="20%" class="text-center"> {{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}})</th>
+                                    <th width="55%" class="text-center"> {{ __('message.permission') }} ({{__('message.permission', [], $secondary_locale)}})</th>
+                                    <th width="20%" class="text-center"> {{ __('message.action') }} ({{__('message.action', [], $secondary_locale)}})</th>
                                 </tr>
                             </thead>
                         </table>
@@ -51,7 +51,7 @@
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header bg-primary">
-                      <h4 class="modal-title">{{ __('message.view_role') }} </h4>
+                      <h4 class="modal-title">{{ __('message.view_role') }} ({{__('message.view_role', [], $secondary_locale)}})</h4>
                       <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -60,7 +60,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button  type="button" class="btn btn-danger float-right" data-dismiss="modal">{{ __('message.close') }}</button>
+                      <button  type="button" class="btn btn-danger float-right" data-dismiss="modal">{{ __('message.close') }} ({{__('message.close', [], $secondary_locale)}})</button>
                       {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
                     </div>
                   </div>

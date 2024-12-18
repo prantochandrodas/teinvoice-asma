@@ -9,8 +9,8 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Sale Payment-List</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+                        <li class="breadcrumb-item active">{{ __('message.sale_payment_list') }} ({{__('message.sale_payment_list', [], $secondary_locale)}})</li>
                     </ol>
                 </div>
             </div>

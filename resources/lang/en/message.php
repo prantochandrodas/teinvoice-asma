@@ -145,4 +145,7 @@ return [
     'voucher_number'                    => 'Voucher Number',
     'payment_date'                    => 'Payment Date',
     'payment_amount'                    => 'Payment Amount',
+    'purchase_amount'                    => 'Purchase Amount',
+    'date_of_manufacture'          => 'Date of Manufacture',
+    'date_of_expiry'          => 'Date of Expiry'
 ];

@@ -5,13 +5,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">{{ __('message.roles') }}</h1>
+                    <h1 class="m-0 text-dark">{{ __('message.roles') }} ({{__('message.roles', [], $secondary_locale)}})</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.role.index') }}">{{ __('message.role') }}</a></li>
-                        <li class="breadcrumb-item active">{{ __('message.edit') }}</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.role.index') }}">{{ __('message.role') }} ({{__('message.role', [], $secondary_locale)}})</a></li>
+                        <li class="breadcrumb-item active">{{ __('message.edit') }} ({{__('message.edit', [], $secondary_locale)}})</li>
                     </ol>
                 </div>
             </div>
@@ -24,7 +24,7 @@
                 <div class="col-md-12">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">{{ __('message.edit_role') }} </h3>
+                            <h3 class="card-title">{{ __('message.edit_role') }} ({{__('message.edit_role', [], $secondary_locale)}})</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                         class="fas fa-minus"></i>
@@ -41,15 +41,15 @@
 
                                         <div class="card-body">
                                             <div class="form-group">
-                                                <label for="name">{{ __('message.role_name') }} <code>*</code> </label>
+                                                <label for="name">{{ __('message.role_name') }} ({{__('message.role_name', [], $secondary_locale)}})<code>*</code> </label>
                                                 <input type="text" name="name" id="name"
                                                     value="{{ old('name') ?? $role->name }}" class="form-control @error('name') is-invalid @enderror"
-                                                    placeholder="{{ __('message.role_name') }}" required>
+                                                    placeholder="{{ __('message.role_name') }} ({{__('message.role_name', [], $secondary_locale)}})" required>
                                                 @error('name')
                                                     <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                                 @enderror
                                             </div>
-                                            <label for="name">{{ __('message.permission') }}</label>
+                                            <label for="name">{{ __('message.permission') }} ({{__('message.permission', [], $secondary_locale)}})</label>
 
                                             <div class="custom-control custom-checkbox">
                                                 <input class="custom-control-input form-check-input" type="checkbox" id="checkPermissionAll" value="1">
@@ -96,8 +96,8 @@
                                         </div>
 
                                         <div class="card-footer">
-                                            <button type="submit" class="btn btn-success">{{ __('message.update') }}</button>
-                                            <button type="reset" class="btn btn-primary">{{ __('message.reset') }}</button>
+                                            <button type="submit" class="btn btn-success">{{ __('message.update') }} ({{__('message.update', [], $secondary_locale)}})</button>
+                                            <button type="reset" class="btn btn-primary">{{ __('message.reset') }} ({{__('message.reset', [], $secondary_locale)}})</button>
                                         </div>
                                     </form>
                                 </div>

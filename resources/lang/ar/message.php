@@ -147,4 +147,6 @@ return [
     'voucher_number'       => 'رقم القسيمة',
     'payment_date'       => 'تاريخ الدفع',
     'payment_amount'       => 'مبلغ الدفع',
+    'date_of_manufacture'       => 'تاريخ الصنع',
+    'date_of_expiry'       => 'تاريخ انتهاء الصلاحية',
 ];

@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">{{ __('message.items') }}</h1>
+          <h1 class="m-0 text-dark">{{ __('message.items') }} ({{__('message.items', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"> {{ __('message.home') }}</a></li>
-            <li class="breadcrumb-item active">{{ __('message.items') }}</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"> {{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item active">{{ __('message.items') }} ({{__('message.items', [], $secondary_locale)}})</li>
           </ol>
         </div>
       </div>
@@ -25,10 +25,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"> {{ __('message.home') }}</h3>
+                        <h3 class="card-title"> {{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</h3>
                         @if (auth_admin_user_permission('item.create'))
                             <a href="{{ route('admin.item.create') }}" class="btn btn-success float-right">
-                                <i class="fa fa-pencil-alt"></i>  {{ __('message.add_item') }}
+                                <i class="fa fa-pencil-alt"></i>  {{ __('message.add_item') }} ({{__('message.add_item', [], $secondary_locale)}})
                             </a>
                         @endif
                     </div>
@@ -36,14 +36,14 @@
                         <table id="yajraDatatable" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th width="5%" class="text-center">  {{ __('message.serial') }} </th>
-                                    <th width="15%" class="text-center">  {{ __('message.code') }} </th>
-                                    <th width="20%" class="text-center">  {{ __('message.name') }} </th>
-                                    <th width="15%" class="text-center">  {{ __('message.image') }} </th>
-                                    <th width="10%" class="text-center">  {{ __('message.price') }}  </th>
-                                    <th width="10%" class="text-center">  {{ __('message.purchase_price') }}  </th>
-                                    <th width="10%" class="text-center">  {{ __('message.status') }} </th>
-                                    <th width="15%" class="text-center">  {{ __('message.action') }} </th>
+                                    <th width="5%" class="text-center">  {{ __('message.serial') }} ({{__('message.serial', [], $secondary_locale)}})</th>
+                                    <th width="15%" class="text-center">  {{ __('message.code') }} ({{__('message.code', [], $secondary_locale)}})</th>
+                                    <th width="20%" class="text-center">  {{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}})</th>
+                                    <th width="15%" class="text-center">  {{ __('message.image') }} ({{__('message.image', [], $secondary_locale)}})</th>
+                                    <th width="10%" class="text-center">  {{ __('message.price') }} ({{__('message.price', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center">  {{ __('message.purchase_price') }} ({{__('message.purchase_price', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center">  {{ __('message.status') }} ({{__('message.status', [], $secondary_locale)}})</th>
+                                    <th width="15%" class="text-center">  {{ __('message.action') }} ({{__('message.action', [], $secondary_locale)}})</th>
                                 </tr>
                             </thead>
                         </table>
@@ -55,7 +55,7 @@
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header bg-primary">
-                      <h4 class="modal-title">{{ __('message.view_item') }}</h4>
+                      <h4 class="modal-title">{{ __('message.view_item') }} ({{__('message.view_item', [], $secondary_locale)}})</h4>
                       <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>
@@ -64,7 +64,7 @@
 
                     </div>
                     <div class="modal-footer">
-                      <button  type="button" class="btn btn-danger float-right" data-dismiss="modal">{{ __('message.close') }}</button>
+                      <button  type="button" class="btn btn-danger float-right" data-dismiss="modal">{{ __('message.close') }} ({{__('message.close', [], $secondary_locale)}})</button>
                     </div>
                   </div>
                 </div>
