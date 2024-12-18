@@ -7,7 +7,7 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Customers Due-List</h1>
+          <h1 class="m-0 text-dark">{{ __('message.customer_due_list') }} ({{__('message.customer_due_list', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
@@ -29,10 +29,10 @@
                         <table id="yajraDatatable" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th width="5%" class="text-center"> SL </th>
-                                    <th width="20%" class="text-center"> Name </th>
-                                    <th width="10%" class="text-center"> Phone </th>
-                                    <th width="10%" class="text-center"> Due Amount </th>
+                                    <th width="5%" class="text-center"> {{ __('message.serial') }} ({{__('message.serial', [], $secondary_locale)}}) </th>
+                                    <th width="20%" class="text-center"> {{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center"> {{ __('message.phone') }} ({{__('message.phone', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center"> {{ __('message.due_amount') }} ({{__('message.due_amount', [], $secondary_locale)}}) </th>
                                     
                                 </tr>
                             </thead>

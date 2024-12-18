@@ -6,14 +6,14 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0 text-dark">
-                        {{ __('message.company_information') }}
+                        {{ __('message.company_information') }} ({{__('message.company_information', [], $secondary_locale)}})
                     </h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"> {{ __('message.home') }}</a></li>
-                        <li class="breadcrumb-item"><a href="{{ route('admin.application.index') }}"> {{ __('message.company_information') }}</a></li>
-                        <li class="breadcrumb-item active"> {{ __('message.edit') }}</li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"> {{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+                        <li class="breadcrumb-item"><a href="{{ route('admin.application.index') }}"> {{ __('message.company_information') }} ({{__('message.company_information', [], $secondary_locale)}})</a></li>
+                        <li class="breadcrumb-item active"> {{ __('message.edit') }} ({{__('message.edit', [], $secondary_locale)}})</li>
                     </ol>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                 <div class="col-md-12">
                     <div class="card card-info">
                         <div class="card-header">
-                            <h3 class="card-title">{{ __('message.edit_company_information') }} </h3>
+                            <h3 class="card-title">{{ __('message.edit_company_information') }} ({{__('message.edit_company_information', [], $secondary_locale)}})</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                         class="fas fa-minus"></i>
@@ -43,7 +43,7 @@
                                         <div class="card-body row">
 
                                             <div class="form-group col-md-6">
-                                                <label for="name">{{ __('message.name') }}</label>
+                                                <label for="name">{{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}})</label>
                                                 <input type="text" name="name" id="name"
                                                     value="{{ old('name') ?? $application->name }}" class="form-control @error('name') is-invalid @enderror"
                                                     placeholder="Enter Application Name" required>
@@ -51,7 +51,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="arabic_name">{{ __('message.arabic_name') }}</label>
+                                                <label for="arabic_name">{{ __('message.arabic_name') }} ({{__('message.arabic_name', [], $secondary_locale)}})</label>
                                                 <input type="text" name="arabic_name" id="arabic_name"
                                                     value="{{ old('arabic_name') ?? $application->arabic_name }}" class="form-control @error('arabic_name') is-invalid @enderror"
                                                     placeholder="{{ __('message.arabic_name') }} " required>
@@ -59,7 +59,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="vat_percent">{{ __('message.vat_percent') }}</label>
+                                                <label for="vat_percent">{{ __('message.vat_percent') }} ({{__('message.vat_percent', [], $secondary_locale)}})</label>
                                                 <input type="number" name="vat_percent" id="vat_percent"
                                                     value="{{ old('vat_percent') ?? $application->vat_percent }}" class="form-control @error('vat_percent') is-invalid @enderror"
                                                     placeholder="{{ __('message.vat_percent') }}" max="100" min="0" required>
@@ -67,7 +67,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="develop_by">{{ __('message.develop_by') }}</label>
+                                                <label for="develop_by">{{ __('message.develop_by') }} ({{__('message.develop_by', [], $secondary_locale)}})</label>
                                                 <input type="text" name="develop_by" id="develop_by"
                                                     value="{{ old('develop_by') ?? $application->develop_by }}" class="form-control @error('develop_by') is-invalid @enderror"
                                                     placeholder="{{ __('message.develop_by') }} " required>
@@ -75,7 +75,7 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="contact_number">{{ __('message.contact_number') }}</label>
+                                                <label for="contact_number">{{ __('message.contact_number') }} ({{__('message.contact_number', [], $secondary_locale)}})</label>
                                                 <input type="text" name="contact_number" id="contact_number"
                                                     value="{{ old('contact_number') ?? $application->contact_number }}"
                                                     class="form-control @error('contact_number') is-invalid @enderror" placeholder="Enter Application Contact Number"
@@ -83,7 +83,7 @@
                                                 @error('contact_number') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span> @enderror
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="email">{{ __('message.email') }}</label>
+                                                <label for="email">{{ __('message.email') }} ({{__('message.email', [], $secondary_locale)}})</label>
                                                 <input type="text" name="email" id="email"
                                                     value="{{ old('email') ?? $application->email }}" class="form-control @error('email') is-invalid @enderror"
                                                     placeholder="Enter Application Email" required>
@@ -91,27 +91,27 @@
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="vat_number">{{ __('message.vat_number') }}</label>
+                                                <label for="vat_number">{{ __('message.vat_number') }} ({{__('message.vat_number', [], $secondary_locale)}})</label>
                                                 <input type="text" name="vat_number" id="vat_number"
                                                     value="{{ old('vat_number') ?? $application->vat_number }}" class="form-control @error('vat_number') is-invalid @enderror"
                                                     placeholder="Enter Application Vat Number" required>
                                                 @error('vat_number') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span> @enderror
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="cr_no">{{ __('message.cr_no') }}</label>
+                                                <label for="cr_no">{{ __('message.cr_no') }} ({{__('message.cr_no', [], $secondary_locale)}})</label>
                                                 <input type="text" name="cr_no" id="cr_no"
                                                     value="{{ old('cr_no') ?? $application->cr_no }}" class="form-control @error('cr_no') is-invalid @enderror"
                                                     placeholder="{{ __('message.cr_no') }}" max="100" min="0" required>
                                                 @error('cr_no') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span> @enderror
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="address">{{ __('message.address') }}</label>
+                                                <label for="address">{{ __('message.address') }} ({{__('message.address', [], $secondary_locale)}})</label>
                                                 <textarea name="address" id="address" class="form-control @error('address') is-invalid @enderror"
                                                     placeholder="Enter Address">{{ old('address') ?? $application->address }}</textarea>
                                                 @error('address') <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span> @enderror
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label for="photo">{{ __('message.photo') }} </label>
+                                                <label for="photo">{{ __('message.photo') }} ({{__('message.photo', [], $secondary_locale)}})</label>
                                                 <input type="file" name="photo" id="photo" class="form-control @error('photo') is-invalid @enderror"
                                                     accept="image/*" onchange="return filePreview(this, 'preview_file_photo')">
                                                 <div id="preview_file_photo" style="margin-top: 10px;">
@@ -138,7 +138,7 @@
                                             </div> --}}
 
                                             <div class="form-group col-md-12">
-                                                <label for="locale">{{ __('message.language') }}  </label>
+                                                <label for="locale">{{ __('message.language') }}  ({{__('message.language', [], $secondary_locale)}})</label>
                                                 <select name="locale" id="locale" class="form-control select2" >
                                                         <option value="en" {{ $application->locale == "en" ? 'selected':'' }}> English</option>
                                                         <option value="ar" {{ $application->locale == "ar" ? 'selected':'' }}> Arabic عربى</option>
@@ -171,8 +171,8 @@
                                         </div>
 
                                         <div class="card-footer">
-                                            <button type="submit" class="btn btn-success">{{ __('message.update') }}</button>
-                                            <button type="reset" class="btn btn-primary">{{ __('message.reset') }}</button>
+                                            <button type="submit" class="btn btn-success">{{ __('message.update') }} ({{__('message.update', [], $secondary_locale)}})</button>
+                                            <button type="reset" class="btn btn-primary">{{ __('message.reset') }} ({{__('message.reset', [], $secondary_locale)}})</button>
                                         </div>
                                     </form>
                                 </div>

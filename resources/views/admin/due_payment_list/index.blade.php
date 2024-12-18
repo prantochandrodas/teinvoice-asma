@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Due Payment-List</h1>
+                    <h1 class="m-0 text-dark">{{ __('message.due_payment_list') }} ({{__('message.due_payment_list', [], $secondary_locale)}})</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -27,15 +27,14 @@
                             <table id="yajraDatatable" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="5%" class="text-center"> SL </th>
-                                        <th width="10%" class="text-center"> Voucher Number</th>
-                                        
-                                        <th width="10%" class="text-center"> Payment Date</th>
-                                        <th width="20%" class="text-center">Customer Name </th>
-                                        <th width="10%" class="text-center"> Customer Phone </th>
-                                        <th width="10%" class="text-center"> Payment Type </th>
-                                        <th width="10%" class="text-center"> Payment Amount</th>
-                                        <th width="10%" class="text-center"> Action</th>
+                                        <th width="5%" class="text-center"> {{ __('message.serial') }} ({{__('message.serial', [], $secondary_locale)}}) </th>
+                                        <th width="10%" class="text-center"> {{ __('message.voucher_number') }} ({{__('message.voucher_number', [], $secondary_locale)}})</th>
+                                        <th width="10%" class="text-center"> {{ __('message.payment_date') }} ({{__('message.payment_date', [], $secondary_locale)}})</th>
+                                        <th width="20%" class="text-center">{{ __('message.customer') }} {{ __('message.name') }} ({{__('message.customer', [], $secondary_locale)}} {{__('message.name', [], $secondary_locale)}})</th>
+                                        <th width="10%" class="text-center">{{ __('message.customer') }} {{ __('message.phone') }} ({{__('message.customer', [], $secondary_locale)}} {{__('message.phone', [], $secondary_locale)}})</th>
+                                        <th width="10%" class="text-center"> {{ __('message.payment_type') }} ({{__('message.payment_type', [], $secondary_locale)}})</th>
+                                        <th width="10%" class="text-center"> {{ __('message.payment_amount') }} ({{__('message.payment_amount', [], $secondary_locale)}})</th>
+                                        <th width="10%" class="text-center"> {{ __('message.action') }} ({{__('message.action', [], $secondary_locale)}})</th>
                                     </tr>
                                 </thead>
                             </table>

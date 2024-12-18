@@ -5,17 +5,17 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">{{ __('message.company_information') }}</h1>
+          <h1 class="m-0 text-dark">{{ __('message.company_information') }} ({{__('message.company_information', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item">
                 <a href="{{ route('admin.home') }}">
-                    {{ __('message.home') }}
+                    {{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})
                 </a>
             </li>
             <li class="breadcrumb-item active">
-                {{ __('message.company_information') }}
+                {{ __('message.company_information') }} ({{__('message.company_information', [], $secondary_locale)}})
             </li>
           </ol>
         </div>
@@ -29,7 +29,7 @@
             <div class="col-md-8 offset-md-2">
                 <fieldset>
                     <legend>
-                        {{ __('message.company_information') }}
+                        {{ __('message.company_information') }} ({{__('message.company_information', [], $secondary_locale)}})
                     </legend>
                     <div class="card">
                         <div class="card-body">
@@ -60,7 +60,7 @@
 
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.name') }}
+                                            {{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             {{ $application->name }}
@@ -69,7 +69,7 @@
 
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.arabic_name') }}
+                                            {{ __('message.arabic_name') }} ({{__('message.arabic_name', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             {{ $application->arabic_name }}
@@ -78,7 +78,7 @@
 
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.vat_percent') }}
+                                            {{ __('message.vat_percent') }} ({{__('message.vat_percent', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             {{ $application->vat_percent }}
@@ -88,7 +88,7 @@
 
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.develop_by') }}
+                                            {{ __('message.develop_by') }} ({{__('message.develop_by', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             {{ $application->develop_by }}
@@ -97,7 +97,7 @@
 
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.email') }}
+                                            {{ __('message.email') }} ({{__('message.email', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             {{ $application->email }}
@@ -106,7 +106,7 @@
 
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.contact_number') }}
+                                            {{ __('message.contact_number') }} ({{__('message.contact_number', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             {{ $application->contact_number }}
@@ -114,7 +114,7 @@
                                     </li>
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.address') }}
+                                            {{ __('message.address') }} ({{__('message.address', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             {{ $application->address }}
@@ -122,7 +122,7 @@
                                     </li>
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.vat_number') }}
+                                            {{ __('message.vat_number') }} ({{__('message.vat_number', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             {{ $application->vat_number }}
@@ -130,7 +130,7 @@
                                     </li>
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.cr_no') }}
+                                            {{ __('message.cr_no') }} ({{__('message.cr_no', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             {{ $application->cr_no }}
@@ -138,7 +138,7 @@
                                     </li>
                                     <li class="list-group-item">
                                         <b>
-                                            {{ __('message.language') }}
+                                            {{ __('message.language') }} ({{__('message.language', [], $secondary_locale)}})
                                         </b>
                                         <a class="float-right">
                                             @switch($application->locale)
