@@ -12,14 +12,14 @@
 
                         <fieldset>
                             <legend>
-                                {{ __('Customer Due-Payment') }}
+                                {{ __('message.due_payment') }} ({{__('message.due_payment', [], $secondary_locale)}})
                             </legend>
 
 
                             <div id="sale_information_div">
                                 <div class="row">
                                     <div class="col-md-2" style="margin-top: 5px">
-                                        <label for="customer_id">{{ __('message.customer') }} </label>
+                                        <label for="customer_id">{{ __('message.customer') }} ({{__('message.customer', [], $secondary_locale)}}) </label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px">
 
@@ -36,34 +36,36 @@
 
                                     {{-- due_payment --}}
                                     <div class="col-md-2" style="margin-top: 5px;" id="due_payment_label">
-                                        <label for="due_payment">{{ __('Due Payment') }} </label>
+                                        <label for="due_payment">{{ __('message.due_payment') }} ({{__('message.due_payment', [], $secondary_locale)}}) </label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px;" id="due_payment_input_div">
                                         <input type="text" name="due_payment" id="due_payment"
                                             value="{{ old('due_payment') }}" class="form-control " readonly
-                                            placeholder="{{ __('Due Payment') }}">
+                                            placeholder="{{ __('message.due_payment') }} ({{__('message.due_payment', [], $secondary_locale)}})">
                                     </div>
 
                                     {{-- pay_amount --}}
                                     <div class="col-md-2" style="margin-top: 5px;" id="pay_amount_label">
-                                        <label for="pay_amount">{{ __('Payment Amount') }} </label>
+                                        <label for="pay_amount">{{ __('message.pay_amount') }} ({{__('message.pay_amount', [], $secondary_locale)}}) </label>
                                     </div>
                                     <div class="col-md-4" style="margin-top: 5px;" id="pay_amount_input_div">
                                         <input type="text" name="pay_amount" id="pay_amount"
                                             value="{{ old('pay_amount') }}" class="form-control "
-                                            placeholder="{{ __('Pay Amount') }}">
+                                            placeholder="{{ __('message.pay_amount') }} ({{__('message.pay_amount', [], $secondary_locale)}})">
                                     </div>
+                                   
+
                                     <div class="col-md-12 text-center" style="margin-top: 5px">
-                                        <p style="margin-bottom: 0px">Please select Payment Type:</p>
+                                        <p style="margin-bottom: 0px">{{ __('message.please_select_payment_type') }} ({{__('message.please_select_payment_type', [], $secondary_locale)}}):</p>
                                         <input type="radio" id="credit" name="payment_type" value="credit">
-                                        <label for="credit">Credit</label>
+                                        <label for="credit">{{ __('message.credit') }} ({{__('message.credit', [], $secondary_locale)}})</label>
                                         <input type="radio" id="credit card" name="payment_type" value="credit card">
-                                        <label for="credit card">Credit Card</label>
+                                        <label for="credit card">{{ __('message.credit_card') }} ({{__('message.credit_card', [], $secondary_locale)}})</label>
                                         <input type="radio" id="Mada" name="payment_type" value="Mada">
-                                        <label for="Mada">Mada</label>
+                                        <label for="Mada">{{ __('message.mada') }} ({{__('message.mada', [], $secondary_locale)}})</label>
                                         <input type="radio" id="Cash" name="payment_type" value="Cash"
                                             checked="checked">
-                                        <label for="Cash"> Cash</label>
+                                        <label for="Cash"> {{ __('message.cash') }} ({{__('message.cash', [], $secondary_locale)}})</label>
                                     </div>
 
                                    
@@ -71,7 +73,7 @@
                                 <div class="col-md-12 text-center mt-2">
 
                                     <button type="submit" name="btn"
-                                        class="btn btn-success">{{ __('Pay') }}</button>
+                                        class="btn btn-success">{{ __('message.pay') }} ({{__('message.pay', [], $secondary_locale)}})</button>
                                 </div>
                             </div>
                             <div id="return_sale_information_div">

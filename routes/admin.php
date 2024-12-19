@@ -96,12 +96,12 @@ Route::group(['middleware' => ['admin', 'setLocalization'], 'prefix' => 'admin']
     //due-customer list
     Route::get('/due-customer', [DueCustomerController::class, 'index'])->name('due-customer.index');
     Route::get('/due-customer/getdata', [DueCustomerController::class, 'getdata'])->name('due-customer.getdata');
-    
+    Route::get('/due-customer/details/{id}', [DueCustomerController::class, 'dueCustomerDetails'])->name('due-customer.details');
     // due payment 
     Route::get('/due-payment', [DuePaymenController::class, 'index'])->name('due-payment.index');
     Route::get('/customer/due-payment/{id}', [DuePaymenController::class, 'getDuePayment'])->name('customer.due.payment');
     Route::post('due-payment/adjustment', [DuePaymenController::class, 'adjustment'])->name('due-payment.adjustment');
-
+    
     //sales payment list 
     Route::get('/sale-payment', [PaymentController::class, 'salePaymentList'])->name('sale-payment.salePaymentList');
     Route::get('/sale-payment/getdata', [PaymentController::class, 'salePaymentGetdata'])->name('sale-payment.getdata');
@@ -118,6 +118,8 @@ Route::group(['middleware' => ['admin', 'setLocalization'], 'prefix' => 'admin']
 
     Route::get('/due-payment-list', [PaymentController::class, 'duePaymentList'])->name('due-payment.duePaymentList');
     Route::get('/due-payment/getdata', [PaymentController::class, 'duePaymentGetdata'])->name('due-payment.getdata');
+    
+
 
     Route::get('supplier/getSuppliers', [App\Http\Controllers\Admin\SupplierController::class, 'getSuppliers'] )->name('supplier.getSuppliers');
     Route::post('supplier/updateStatus', [App\Http\Controllers\Admin\SupplierController::class, 'updateStatus'] )->name('supplier.updateStatus');

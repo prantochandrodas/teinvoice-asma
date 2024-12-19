@@ -5,13 +5,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Customers</h1>
+          <h1 class="m-0 text-dark">{{ __('message.customer') }} ({{__('message.customer', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.customer.index') }}">Customer</a></li>
-            <li class="breadcrumb-item active">Create</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.customer.index') }}">{{ __('message.customer') }} ({{__('message.customer', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item active">{{ __('message.create') }} ({{__('message.create', [], $secondary_locale)}})</li>
           </ol>
         </div>
       </div>
@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Create New Customer </h3>
+                        <h3 class="card-title">{{ __('message.create_new_customer') }} ({{__('message.create_new_customer', [], $secondary_locale)}}) </h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                     class="fas fa-minus"></i>
@@ -39,7 +39,7 @@
                                     <div class="card-body row">
 
                                         <div class="form-group col-md-6">
-                                            <label for="phone">Phone <code>*</code> </label>
+                                            <label for="phone">{{ __('message.phone') }} ({{__('message.phone', [], $secondary_locale)}}) <code>*</code> </label>
                                             <input type="text" name="phone" id="phone"  value="{{ old('phone') }}"
                                                 class="form-control @error('phone') is-invalid @enderror"  placeholder="Enter Phone" required>
                                             @error('phone')
@@ -48,7 +48,7 @@
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label for="name">Name <code>*</code>  </label>
+                                            <label for="name">{{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}}) <code>*</code>  </label>
                                             <input type="text" name="name" id="name" value="{{ old('name') }}"
                                             class="form-control @error('name') is-invalid @enderror" placeholder="Enter Customer Name" autocomplete="off" required >
                                             @error('name')
@@ -57,7 +57,7 @@
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label for="email">Email  </label>
+                                            <label for="email">{{ __('message.email') }} ({{__('message.email', [], $secondary_locale)}})  </label>
                                             <input type="email" name="email" id="email"  value="{{ old('email') }}"
                                                 class="form-control @error('email') is-invalid @enderror"  placeholder="Enter email" autocomplete="off" required >
                                             @error('email')
@@ -66,7 +66,7 @@
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label for="vat_no">Vat No  <code>*</code> </label>
+                                            <label for="vat_no">{{ __('message.vat_no') }} ({{__('message.vat_no', [], $secondary_locale)}})  <code>*</code> </label>
                                             <input type="text" name="vat_no" id="vat_no"  value="{{ old('vat_no') }}"
                                                 class="form-control @error('vat_no') is-invalid @enderror"  placeholder="Enter Vat No" autocomplete="off" required >
                                             @error('vat_no')
@@ -75,7 +75,7 @@
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label for="image">Image </label>
+                                            <label for="image">{{ __('message.image') }} ({{__('message.image', [], $secondary_locale)}}) </label>
                                             <input type="file" name="image" id="image"  class="form-control @error('image') is-invalid @enderror"
                                                 accept="image/*" onchange="return filePreview(this, 'preview_file')" >
                                             <div id="preview_file" style="margin-top: 10px;"></div>
@@ -85,7 +85,7 @@
                                         </div>
 
                                         <div class="form-group col-md-6">
-                                            <label for="address">Address  </label>
+                                            <label for="address">{{ __('message.address') }} ({{__('message.address', [], $secondary_locale)}})  </label>
                                             <textarea type="address" name="address" id="address"
                                                class="form-control @error('address') is-invalid @enderror" placeholder="Address"
                                             >{{ old('address') }}</textarea>
@@ -97,8 +97,8 @@
                                     </div>
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-success">Submit</button>
-                                        <button type="reset" class="btn btn-primary">Reset</button>
+                                        <button type="submit" class="btn btn-success">{{ __('message.submit') }} ({{__('message.submit', [], $secondary_locale)}})</button>
+                                        <button type="reset" class="btn btn-primary">{{ __('message.reset') }} ({{__('message.reset', [], $secondary_locale)}})</button>
                                     </div>
                                 </form>
                             </div>

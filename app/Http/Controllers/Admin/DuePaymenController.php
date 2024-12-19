@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\Payment;
+use App\Models\Sale;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 class DuePaymenController extends Controller
@@ -35,6 +36,7 @@ class DuePaymenController extends Controller
 
     public function adjustment(Request $request)
     {
+       
         
         $request->validate([
             'customer_id' => 'required|string',
@@ -74,7 +76,9 @@ class DuePaymenController extends Controller
         // $this->setMessage('payment Done.', 'success');
         // return redirect()->route('admin.due-payment.index');
         // $data = Payment::with(['saleInfo', 'customer'])->find($id);
-
-        return view('admin.sales_payment_list.print', compact('data'));
+        $type = 0;
+        $previous_route = url()->previous();
+        return view('admin.sales_payment_list.print', compact('data','type','previous_route'));
     }
+
 }

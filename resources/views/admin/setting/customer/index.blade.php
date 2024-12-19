@@ -7,12 +7,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Customers</h1>
+          <h1 class="m-0 text-dark">{{ __('message.customer') }} ({{__('message.customer', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-            <li class="breadcrumb-item active">Customer</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item active">{{ __('message.customer') }} ({{__('message.customer', [], $secondary_locale)}})</li>
           </ol>
         </div>
       </div>
@@ -25,10 +25,10 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title"> Customers List </h3>
+                        <h3 class="card-title"> {{ __('message.customer') }} {{ __('message.list') }} ({{__('message.customer', [], $secondary_locale)}} {{__('message.list', [], $secondary_locale)}}) </h3>
                         @if (auth_admin_user_permission('customer.create'))
                             <a href="{{ route('admin.customer.create') }}" class="btn btn-success float-right">
-                                <i class="fa fa-pencil-alt"></i> Add Customer
+                                <i class="fa fa-pencil-alt"></i> {{ __('message.add') }} {{ __('message.customer') }} ({{__('message.add', [], $secondary_locale)}} {{__('message.list', [], $secondary_locale)}})
                             </a>
                         @endif
                     </div>
@@ -36,13 +36,13 @@
                         <table id="yajraDatatable" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th width="5%" class="text-center"> SL </th>
-                                    <th width="20%" class="text-center"> Name </th>
-                                    <th width="20%" class="text-center"> Image </th>
-                                    <th width="15%" class="text-center"> Vat No </th>
-                                    <th width="10%" class="text-center"> Phone </th>
-                                    <th width="10%" class="text-center"> Status </th>
-                                    <th width="20%" class="text-center"> Action </th>
+                                    <th width="5%" class="text-center"> {{ __('message.serial') }} ({{__('message.serial', [], $secondary_locale)}}) </th>
+                                    <th width="20%" class="text-center"> {{ __('message.name') }} ({{__('message.name', [], $secondary_locale)}}) </th>
+                                    <th width="20%" class="text-center"> {{ __('message.image') }} ({{__('message.image', [], $secondary_locale)}}) </th>
+                                    <th width="15%" class="text-center"> {{ __('message.vat_no') }} ({{__('message.vat_no', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center"> {{ __('message.phone') }} ({{__('message.phone', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center"> {{ __('message.status') }} ({{__('message.status', [], $secondary_locale)}}) </th>
+                                    <th width="20%" class="text-center"> {{ __('message.action') }} ({{__('message.action', [], $secondary_locale)}}) </th>
                                 </tr>
                             </thead>
                         </table>
@@ -54,7 +54,7 @@
                 <div class="modal-dialog modal-lg">
                   <div class="modal-content">
                     <div class="modal-header bg-primary">
-                      <h4 class="modal-title">View Customer</h4>
+                      <h4 class="modal-title">{{ __('message.view') }} {{ __('message.customer') }} ({{__('message.view', [], $secondary_locale)}} {{__('message.customer', [], $secondary_locale)}})</h4>
                       <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                       </button>

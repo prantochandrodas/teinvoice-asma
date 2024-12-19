@@ -6,12 +6,12 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Purchase List</h1>
+          <h1 class="m-0 text-dark"> {{ __('message.purchase') }} {{ __('message.list') }} ({{__('message.purchase', [], $secondary_locale)}} {{__('message.list', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-            <li class="breadcrumb-item active">Purchase List</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}"> {{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item active"> {{ __('message.purchase') }} {{ __('message.list') }} ({{__('message.purchase', [], $secondary_locale)}} {{__('message.list', [], $secondary_locale)}})</li>
           </ol>
         </div>
       </div>
@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Purchase List </h3>
+                        <h3 class="card-title">{{ __('message.purchase') }} {{ __('message.list') }} ({{__('message.purchase', [], $secondary_locale)}} {{__('message.list', [], $secondary_locale)}}) </h3>
                         @if (auth_admin_user_permission('purchase.create'))
                             <a href="{{  route('admin.purchase.index')  }}" class="btn btn-success float-right">
                                 <i class="fa fa-pencil-alt"></i> Purchase Form
@@ -33,7 +33,7 @@
 
                         <div class="row input-daterange" style="margin-top: 40px">
                             <div class="col-md-3">
-                                <label for="supplier_id">Supplier</label>
+                                <label for="supplier_id">{{ __('message.supplier') }} ({{__('message.supplier', [], $secondary_locale)}})</label>
                                 <select name="supplier_id" id="supplier_id" class="form-control select2" style="width: 100%" >
                                     <option value="0" >Select Supplier </option>
                                     @foreach ($suppliers as $supplier)
@@ -42,15 +42,15 @@
                                 </select>
                             </div>
                             <div class="col-md-3">
-                                <label for="invoice_no">Invoice No</label>
+                                <label for="invoice_no">{{ __('message.invoice_no') }} ({{__('message.invoice_no', [], $secondary_locale)}})</label>
                                 <input type="text" name="invoice_no" id="invoice_no" class="form-control"  placeholder="Invoice No"/>
                             </div>
                             <div class="col-md-2">
-                                <label for="from_date">From Date</label>
+                                <label for="from_date">{{ __('message.from_date') }} ({{__('message.from_date', [], $secondary_locale)}})</label>
                                 <input type="date" name="from_date" id="from_date" class="form-control"  value="{{ date('Y-m-d') }}"/>
                             </div>
                             <div class="col-md-2">
-                                <label for="to_date">To Date</label>
+                                <label for="to_date">{{ __('message.to_date') }} ({{__('message.to_date', [], $secondary_locale)}})</label>
                                 <input type="date" name="to_date" id="to_date" class="form-control" value="{{ date('Y-m-d') }}"/>
                             </div>
                             <div class="col-md-2" style="margin-top: 20px">
@@ -67,31 +67,31 @@
                         <table id="yajraDatatable" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
-                                    <th width="5%" class="text-center"> SL </th>
-                                    <th width="10%" class="text-center"> Invoice No </th>
-                                    <th width="10%" class="text-center"> Date </th>
-                                    <th width="10%" class="text-center"> Supplier </th>
-                                    <th width="10%" class="text-center"> Quantity </th>
-                                    <th width="10%" class="text-center"> Grand Amount</th>
-                                    <th width="15%" class="text-center"> Discount Amount </th>
-                                    <th width="15%" class="text-center"> Final Amount </th>
-                                    <th width="15%" class="text-center"> Action </th>
+                                    <th width="5%" class="text-center"> {{ __('message.serial') }} ({{__('message.serial', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center">{{ __('message.invoice_no') }} ({{__('message.invoice_no', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center"> {{ __('message.date') }} ({{__('message.date', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center"> {{ __('message.supplier') }} ({{__('message.supplier', [], $secondary_locale)}}) </th>
+                                    <th width="10%" class="text-center"> {{ __('message.quantity') }} ({{__('message.quantity', [], $secondary_locale)}})</th>
+                                    <th width="10%" class="text-center"> {{ __('message.grand_amount') }} ({{__('message.grand_amount', [], $secondary_locale)}})</th>
+                                    <th width="15%" class="text-center"> {{ __('message.discount_amount') }} ({{__('message.discount_amount', [], $secondary_locale)}})</th>
+                                    <th width="15%" class="text-center"> {{ __('message.final_amount') }} ({{__('message.final_amount', [], $secondary_locale)}}) </th>
+                                    <th width="15%" class="text-center"> {{ __('message.action') }} ({{__('message.action', [], $secondary_locale)}})</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
-                                    <th class="text-center" colspan="5"> Total </th>
+                                    <th class="text-center" colspan="5"> {{ __('message.total') }} ({{__('message.total', [], $secondary_locale)}})</th>
                                     <th class="text-center">
                                         <span id="page_total_grand_amount"></span> <br>
-                                        (<span id="total_grand_amount"></span> Total) </th>
+                                        (<span id="total_grand_amount"></span> {{ __('message.total') }} ({{__('message.total', [], $secondary_locale)}})) </th>
                                     </th>
                                     <th class="text-center">
                                         <span id="page_total_discount_amount"></span> <br>
-                                        (<span id="total_discount_amount"></span> Total)
+                                        (<span id="total_discount_amount"></span> {{ __('message.total') }} ({{__('message.total', [], $secondary_locale)}}))
                                     </th>
                                     <th class="text-center">
                                         <span id="page_total_final_amount"></span> <br>
-                                        (<span id="total_final_amount"></span> Total)
+                                        (<span id="total_final_amount"></span> {{ __('message.total') }} ({{__('message.total', [], $secondary_locale)}}))
                                     </th>
                                     <th></th>
                                 </tr>

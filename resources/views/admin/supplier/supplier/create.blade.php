@@ -5,13 +5,13 @@
     <div class="container-fluid">
       <div class="row mb-2">
         <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Supplier</h1>
+          <h1 class="m-0 text-dark">{{ __('message.supplier') }} ({{__('message.supplier', [], $secondary_locale)}})</h1>
         </div>
         <div class="col-sm-6">
           <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-            <li class="breadcrumb-item"><a href="{{ route('admin.supplier.index') }}">Suppliers</a></li>
-            <li class="breadcrumb-item active">Create</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ __('message.home') }} ({{__('message.home', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin.supplier.index') }}">{{ __('message.supplier') }} ({{__('message.supplier', [], $secondary_locale)}})</a></li>
+            <li class="breadcrumb-item active">{{ __('message.create') }} ({{__('message.create', [], $secondary_locale)}})</li>
           </ol>
         </div>
       </div>
@@ -24,7 +24,7 @@
             <div class="col-md-12">
                 <div class="card card-info">
                     <div class="card-header">
-                        <h3 class="card-title">Create New Supplier </h3>
+                        <h3 class="card-title">{{ __('message.create_new_supplier') }} ({{__('message.create_new_supplier', [], $secondary_locale)}}) </h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                     class="fas fa-minus"></i>
@@ -38,42 +38,42 @@
                                   @csrf
                                     <div class="card-body">
                                         <div class="form-group">
-                                            <label for="code">Supplier Code</label>
+                                            <label for="code">{{ __('message.supplier') }} {{ __('message.code') }} ({{__('message.supplier', [], $secondary_locale)}} {{__('message.code', [], $secondary_locale)}})</label>
                                             <input type="text" name="code" id="code" value="{{ $unique_code }}" class="form-control @error('code') is-invalid @enderror" placeholder="Enter Supplier Code" required>
                                             @error('code')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="name">Supplier Name</label>
+                                            <label for="name">{{ __('message.supplier') }} {{ __('message.name') }} ({{__('message.supplier', [], $secondary_locale)}} {{__('message.name', [], $secondary_locale)}})</label>
                                             <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Enter Supplier Name" required>
                                             @error('name')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="company_name">Supplier Company Name</label>
+                                            <label for="company_name"> {{ __('message.supplier') }} {{ __('message.company_name') }} ({{__('message.supplier', [], $secondary_locale)}} {{__('message.company_name', [], $secondary_locale)}})</label>
                                             <input type="text" name="company_name" id="company_name" value="{{ old('company_name') }}" class="form-control @error('company_name') is-invalid @enderror" placeholder="Enter Supplier Company Name" >
                                             @error('company_name')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="email">Supplier Email</label>
+                                            <label for="email">{{ __('message.supplier') }} {{ __('message.email') }} ({{__('message.supplier', [], $secondary_locale)}} {{__('message.email', [], $secondary_locale)}})</label>
                                             <input type="text" name="email" id="email" value="{{ old('email') }}" class="form-control @error('email') is-invalid @enderror" placeholder="Enter Supplier Email" >
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="contact_number">Supplier Contact Number</label>
+                                            <label for="contact_number"> {{ __('message.supplier') }} {{ __('message.contact_number') }} ({{__('message.supplier', [], $secondary_locale)}} {{__('message.contact_number', [], $secondary_locale)}})</label>
                                             <input type="text" name="contact_number" id="contact_number" value="{{ old('contact_number') }}" class="form-control @error('contact_number') is-invalid @enderror" placeholder="Enter Supplier Contact Number" required>
                                             @error('contact_number')
                                                 <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong> </span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="address">Address</label>
+                                            <label for="address">{{ __('message.address') }} ({{__('message.address', [], $secondary_locale)}})</label>
                                             <textarea name="address" id="address" class="form-control  @error('address') is-invalid @enderror"
                                                 placeholder="Enter Supplier Address">{{ old('address') }}</textarea>
                                             @error('address')
@@ -82,7 +82,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            <label for="image">Image </label>
+                                            <label for="image">{{ __('message.image') }} ({{__('message.image', [], $secondary_locale)}}) </label>
                                             <input type="file" name="image" id="image"  class="form-control @error('image') is-invalid @enderror" accept="image/*" onchange="return filePreview(this)" >
                                             <div id="preview_file" style="margin-top: 10px;"></div>
                                             @error('image')
@@ -92,8 +92,8 @@
                                     </div>
 
                                     <div class="card-footer">
-                                        <button type="submit" class="btn btn-success">Submit</button>
-                                        <button type="reset" class="btn btn-primary">Reset</button>
+                                        <button type="submit" class="btn btn-success">{{ __('message.submit') }} ({{__('message.submit', [], $secondary_locale)}})</button>
+                                        <button type="reset" class="btn btn-primary">{{ __('message.reset') }} ({{__('message.reset', [], $secondary_locale)}})</button>
                                     </div>
                                 </form>
                             </div>

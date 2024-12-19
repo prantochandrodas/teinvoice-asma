@@ -5,12 +5,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Expense (حساب)</h1>
+                    <h1 class="m-0 text-dark">{{ __('message.expense') }}
+                        ({{ __('message.expense', [], $secondary_locale) }})</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Expense (حساب)</li>
+                        <li class="breadcrumb-item active">{{ __('message.expense') }}
+                            ({{ __('message.expense', [], $secondary_locale) }})</li>
                     </ol>
                 </div>
             </div>
@@ -23,10 +25,12 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"> Expense List (قائمة النفقات) </h3>
+                            <h3 class="card-title"> {{ __('message.expense') }} {{ __('message.list') }}
+                                ({{ __('message.expense', [], $secondary_locale) }} {{ __('message.list', [], $secondary_locale) }})</h3>
                             @if (auth_admin_user_permission('supplier.create'))
                                 <button data-toggle="modal" data-target="#exampleModal" class="btn btn-success float-right">
-                                    <i class="fa fa-pencil-alt"></i> Add Expense (أضف النفقات)
+                                    <i class="fa fa-pencil-alt"></i> {{ __('message.add') }} {{ __('message.expense') }}
+                                    ({{ __('message.add', [], $secondary_locale) }} {{ __('message.expense', [], $secondary_locale) }})
                                 </button>
                             @endif
                             <div class="col-sm-5" style="display: flex;margin-left:400px">
@@ -58,15 +62,15 @@
                             <table id="yajraDatatable" class="table table-bordered table-striped">
                                 <thead>
                                     <tr>
-                                        <th width="7%" class="text-center"> SL (إس إل)</th>
-                                        <th width="7%" class="text-center"> Date (تاريخ)</th>
-                                        <th width="10%" class="text-center"> Head Name (اسم الرأس) </th>
-                                        <th width="10%" class="text-center"> Branch Name</th>
-                                        <th width="10%" class="text-center"> Id (بطاقة تعريف)</th>
-                                        <th width="10%" class="text-center"> Amount (كمية)</th>
+                                        <th width="7%" class="text-center"> {{ __('message.serial') }} ({{ __('message.serial', [], $secondary_locale) }})</th>
+                                        <th width="7%" class="text-center"> {{ __('message.date') }} ({{ __('message.date', [], $secondary_locale) }})</th>
+                                        <th width="10%" class="text-center"> {{ __('message.head_name') }} ({{ __('message.head_name', [], $secondary_locale) }}) </th>
+                                        <th width="10%" class="text-center"> {{ __('message.branch_name') }} ({{ __('message.branch_name', [], $secondary_locale) }})</th>
+                                        <th width="10%" class="text-center"> {{ __('message.id') }} ({{ __('message.id', [], $secondary_locale) }})</th>
+                                        <th width="10%" class="text-center"> {{ __('message.amount') }} ({{ __('message.amount', [], $secondary_locale) }})</th>
                                         {{-- <th width="10%" class="text-center"> Description</th> --}}
-                                        <th width="10%" class="text-center"> Purpose (غاية)</th>
-                                        <th width="11%" class="text-center"> Action (فعل)</th>
+                                        <th width="10%" class="text-center"> {{ __('message.purpose') }} ({{ __('message.purpose', [], $secondary_locale) }})</th>
+                                        <th width="11%" class="text-center"> {{ __('message.action') }} ({{ __('message.action', [], $secondary_locale) }})</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -83,14 +87,14 @@
                             @csrf
                             <div class="modal-content">
                                 <div class="modal-header bg-primary">
-                                    <h4 class="modal-title">Add Expense</h4>
+                                    <h4 class="modal-title">{{ __('message.add') }} {{ __('message.expense') }}  ({{ __('message.add', [], $secondary_locale) }} {{ __('message.expense', [], $secondary_locale) }})</h4>
                                     <button type="button" class="close bg-danger" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
 
-                                    <label for="">Select Branch</label>
+                                    <label for="">{{ __('message.select_branch') }} ({{ __('message.select_branch', [], $secondary_locale) }})</label>
                                     <select name="branch_id" id="" class="form-control">
                                         <option value="">Select Branch</option>
                                         @foreach ($branches as $data)
@@ -100,7 +104,7 @@
                                     @error('branch_id')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
-                                    <label for="">Select Expense Head (حدد رأس النفقات)</label>
+                                    <label for="">{{ __('message.expense_head') }} ({{ __('message.expense_head', [], $secondary_locale) }})</label>
                                     <select name="expense_head_id" id="" class="form-control">
                                         <option value="">Select Expense Head</option>
                                         @foreach ($expenseHeads as $expenseHead)
@@ -115,25 +119,25 @@
                                     @error('description')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror --}}
-                                    <label for="">Expense Id (معرف النفقات)</label>
+                                    <label for="">{{ __('message.expense') }} {{ __('message.id') }}  ({{ __('message.expense', [], $secondary_locale) }} {{ __('message.id', [], $secondary_locale) }})</label>
                                     <input type="text" name="expense_id" id="" class="form-control"
                                         placeholder="Expense ID (معرف النفقات)" value="{{ old('expense_id') }}">
                                     @error('expense_id')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
-                                    <label for="">Date (تاريخ)</label>
+                                    <label for="">{{ __('message.date') }} ({{ __('message.date', [], $secondary_locale) }})</label>
                                     <input type="date" name="date" class="form-control"
                                         value="{{ old('date') }}">
                                     @error('date')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
-                                    <label for="">Amount(كمية)</label>
+                                    <label for="">{{ __('message.amount') }} ({{ __('message.amount', [], $secondary_locale) }})</label>
                                     <input type="text" name="amount" id="" class="form-control"
                                         placeholder="Expense Amount" value="{{ old('amount') }}">
                                     @error('amount')
                                         <p class="text-danger">{{ $message }}</p>
                                     @enderror
-                                    <label for="">Purpose(غاية)</label>
+                                    <label for="">{{ __('message.purpose') }} ({{ __('message.purpose', [], $secondary_locale) }})</label>
                                     <input type="text" name="comment" id="" class="form-control"
                                         placeholder="Purpose" value="{{ old('comment') }}">
                                     @error('comment')
@@ -142,8 +146,8 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-danger float-right"
-                                        data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-success float-right">Submit</button>
+                                        data-dismiss="modal">{{ __('message.close') }} ({{ __('message.close', [], $secondary_locale) }})</button>
+                                    <button type="submit" class="btn btn-success float-right">{{ __('message.submit') }} ({{ __('message.submit', [], $secondary_locale) }})</button>
                                 </div>
                             </div>
                         </form>
