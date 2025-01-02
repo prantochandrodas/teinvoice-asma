@@ -166,4 +166,5 @@ return [
     'id'           => 'بطاقة تعريف',
     'purpose'           => 'غاية',
     'branch_name_arabic'           => 'اسم الفرع عربي',
+    'received_by'           => 'تم استلامه بواسطة',
 ];

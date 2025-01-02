@@ -461,6 +461,8 @@ class SaleController extends Controller
                     $payment_data = [
                         'sale_id' => $sale->id,
                         'customer_id' => $customer_id,
+                        'branch_id' => $request->input('branch_id'),
+                        'received_by' => $request->input('received_by'),
                         'payment_type' => $request->input('payment_type'),
                         'type' => 1,
                         'voucher_number' => $invoice_no,
@@ -475,6 +477,8 @@ class SaleController extends Controller
                 $payment_data = [
                     'sale_id' => $sale->id,
                     'payment_type' => $request->input('payment_type'),
+                    'branch_id' => $request->input('branch_id'),
+                    'received_by' => $request->input('received_by'),
                     'type' => 1,
                     'voucher_number' => $invoice_no,
                     'pay_amount' => $request->input('total_amount'),

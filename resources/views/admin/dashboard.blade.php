@@ -109,6 +109,14 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col-md-2" style="margin-top: 5px;" id="received_by_label">
+                                        <label for="received_by">{{ __('message.received_by') }} ({{__('message.received_by', [], $secondary_locale)}}) </label>
+                                    </div>
+                                    <div class="col-md-4" style="margin-top: 5px;" id="received_by_input_div">
+                                        <input type="text" name="received_by" id="received_by" required
+                                            value="{{ old('received_by') }}" class="form-control "
+                                            placeholder="{{ __('message.received_by') }} ({{__('message.received_by', [], $secondary_locale)}})">
+                                    </div>
                                     <div class="row" id="customer_information_div" style="margin-top: 5px; display:none">
                                         <div class="col-md-3">
                                             <label for="customer_name"> Customer Name </label>
@@ -146,7 +154,7 @@
                                     <div class="col-md-2" style="margin-top: 5px">
                                         <label for="note">{{ __('message.note') }} ({{__('message.note', [], $secondary_locale)}})</label>
                                     </div>
-                                    <div class="col-md-10" style="margin-top: 5px">
+                                    <div class="col-md-4" style="margin-top: 5px">
                                         <input type="text" name="note" id="note" value="{{ old('note') }}"
                                             class="form-control " placeholder="{{ __('message.note') }}">
                                     </div>

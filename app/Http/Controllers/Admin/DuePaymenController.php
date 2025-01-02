@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use App\Models\Customer;
 use App\Models\Payment;
 use App\Models\Sale;
@@ -17,6 +18,7 @@ class DuePaymenController extends Controller
         $data['main_menu']  = 'setting';
         $data['child_menu'] = 'DuePayment';
         $data['page_title'] = 'Due Payment';
+        $data['branches'] = Branch::all();
         $data['customers'] = Customer::where('due_payment', '>', 0)
             ->orderBy('due_payment', 'desc')
             ->get();
@@ -42,6 +44,8 @@ class DuePaymenController extends Controller
             'customer_id' => 'required|string',
             'pay_amount' => 'required|numeric|min:0.01',
             'payment_type' => 'required',
+            'branch_id' => 'required',
+            'received_by' => 'required',
         ]);
 
         $customer = Customer::find($request->customer_id);
@@ -65,6 +69,8 @@ class DuePaymenController extends Controller
             $invoice_no = 'PAY_001';
         }
         $payment_data=[
+            'branch_id' => $request->input('branch_id'),
+            'received_by' => $request->input('received_by'),
             'payment_type' => $request->input('payment_type'),
             'customer_id' => $request->input('customer_id'),
             'type' => 2,

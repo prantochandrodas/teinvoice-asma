@@ -33,6 +33,21 @@
                                             @endforeach
                                         </select>
                                     </div>
+                                    <div class="col-md-2" style="margin-top: 5px">
+                                        <label for="branch_id">{{ __('message.branch') }} ({{__('message.branch', [], $secondary_locale)}}) </label>
+                                    </div>
+                                    <div class="col-md-4" style="margin-top: 5px">
+
+                                        <select name="branch_id" id="branch_id" class="form-control select2"
+                                            data-placeholder="Select an Branch" data-tags="true" data-allow-clear="true" required>
+                                            <option></option>
+                                            @foreach ($branches as $customer)
+                                                <option value="{{ $customer->id }}">
+                                                    {{ $customer->name }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
                                     {{-- due_payment --}}
                                     <div class="col-md-2" style="margin-top: 5px;" id="due_payment_label">
@@ -52,6 +67,15 @@
                                         <input type="text" name="pay_amount" id="pay_amount"
                                             value="{{ old('pay_amount') }}" class="form-control "
                                             placeholder="{{ __('message.pay_amount') }} ({{__('message.pay_amount', [], $secondary_locale)}})">
+                                    </div>
+
+                                    <div class="col-md-2" style="margin-top: 5px;" id="received_by_label">
+                                        <label for="received_by">{{ __('message.received_by') }} ({{__('message.received_by', [], $secondary_locale)}}) </label>
+                                    </div>
+                                    <div class="col-md-4" style="margin-top: 5px;" id="received_by_input_div">
+                                        <input type="text" name="received_by" id="received_by" required
+                                            value="{{ old('received_by') }}" class="form-control "
+                                            placeholder="{{ __('message.received_by') }} ({{__('message.received_by', [], $secondary_locale)}})">
                                     </div>
                                    
 

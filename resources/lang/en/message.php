@@ -166,4 +166,5 @@ return [
     'purpose'          => 'Purpose',
     'select_branch'          => 'Select Branch',
     'branch_name_arabic'          => 'Branch Name Arabic',
+    'received_by'          => 'Received By',
 ];

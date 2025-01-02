@@ -162,4 +162,5 @@ return [
     'purpose'           => 'উদ্দেশ্য',
     'select_branch'           => 'শাখা নির্বাচন করুন',
     'branch_name_arabic'           => 'শাখার নাম আরবি',
+    'received_by'           => 'দ্বারা প্রাপ্ত',
 ];

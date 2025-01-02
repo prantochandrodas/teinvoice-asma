@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0 text-dark">Customers Ledger</h1>
+                    <h1 class="m-0 text-dark">{{ __('message.customer_ledger') }} ({{ __('message.customer_ledger', [], $secondary_locale) }})</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                        <li class="breadcrumb-item active">Customer Ledger</li>
+                        <li class="breadcrumb-item active">{{ __('message.customer_ledger') }} ({{ __('message.customer_ledger', [], $secondary_locale) }})</li>
                     </ol>
                 </div>
             </div>
@@ -23,12 +23,12 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title"> Sale List </h3>
+                            <h3 class="card-title"> {{ __('message.sale_list') }} ({{ __('message.sale_list', [], $secondary_locale) }}) </h3>
                             <form action="{{ route('admin.customer.ledger') }}" method="GET" class="mb-4"
                                 id="filterForm">
                                 <div class="row input-daterange" style="margin-top: 40px">
                                     <div class="col-md-3">
-                                        <label for="customer_id">{{ __('message.customer') }} </label>
+                                        <label for="customer_id">{{ __('message.customer') }}  ({{ __('message.customer', [], $secondary_locale) }})</label>
                                         <select id="customer_id" class="form-control select2" name="customer_id"
                                             data-placeholder="Select a Customer" data-tags="true" data-allow-clear="true">
                                             <option></option>
@@ -42,7 +42,7 @@
                                     </div>
 
                                     <div class="col-sm-4">
-                                        <label for="to_date">Date</label>
+                                        <label for="to_date">{{ __('message.date') }}  ({{ __('message.date', [], $secondary_locale) }})</label>
                                         <div class="input-group">
                                             <input type="date" id="from_date" name="fromDate" class="form-control"
                                                 value="{{ request('fromDate', now()->startOfMonth()->format('Y-m-d')) }}" />

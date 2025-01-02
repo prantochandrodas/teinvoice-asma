@@ -61,19 +61,19 @@
                     <img src="{{ $application->photo_path }}" style="width: 100%;height:200px" alt="Company Logo">
                 </td>
             </tr>
-            <tr>
+            {{-- <tr>
                 <td colspan="2" class="text-center">
                     <p class="fw-bold" style="font-size: 16px">{{ $application->name }}</p>
                     <p style="font-size: 16px">{{ $application->arabic_name }}</p>
                     <p style="font-size: 16px">C.R {{ $application->cr_no }}</p>
                     <p style="font-size: 16px">VAT NO: {{ $application->vat_number }}</p>
                 </td>
-            </tr>
+            </tr> --}}
 
             <!-- Receipt Voucher -->
             <tr>
                 <td colspan="2" class="text-center dashed-border">
-                    <p class="fw-bold" style="font-size: 16px">Receipt Voucher</p>
+                    <p class="fw-bold" style="font-size: 16px">(إيصال استلام) <br> Receipt Voucher</p>
                     
                 </td>
             </tr>
@@ -81,22 +81,24 @@
             <!-- Voucher Details -->
             <tr>
                 <td>
-                    <p style="font-size: 16px">Voucher: {{$data->voucher_number ? $data->voucher_number : ''}}</p>
+                    <p style="font-size: 16px">(قسيمة) Voucher: {{$data->voucher_number ? $data->voucher_number : ''}}</p>
                 </td>
                 <td class="text-end">
                     <p style="font-size: 16px">
-                        Date: {{ $data->payment_date ? \Carbon\Carbon::parse($data->payment_date)->format('d/m/Y') : '' }}
+                        (تاريخ)  Date: {{ $data->payment_date ? \Carbon\Carbon::parse($data->payment_date)->format('d/m/Y') : '' }}
                     </p>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <p class="fw-bold" style="font-size: 16px">Received From: {{$data->customer ? $data->customer->name : ''}}</p>
+                    <p class="fw-bold" style="font-size: 16px">(اسم الفرع)  Branch Name: {{$data->branch ? $data->branch->name : ''}}</p>
+                    <p class="fw-bold" style="font-size: 16px">(تم الاستلام بواسطة)  Received By: {{$data->received_by ? $data->received_by: ''}}</p>
+                    <p class="fw-bold" style="font-size: 16px">(تم الاستلام من)  Received From: {{$data->customer ? $data->customer->name : ''}}</p>
                 </td>
             </tr>
             <tr>
                 <td colspan="2">
-                    <p class="fw-bold" style="font-size: 16px">Amount: {{$data->pay_amount ? number_format($data->pay_amount) : ''}}</p>
+                    <p class="fw-bold" style="font-size: 16px">(كمية)  Amount: {{$data->pay_amount ? number_format($data->pay_amount) : ''}}</p>
                     <p style="font-size: 16px">
                         {{ $data->pay_amount ? convertNumberToWords($data->pay_amount) . ' Saudi Riyals only.' : 'N/A' }}
                     </p>
@@ -104,15 +106,15 @@
             </tr>
             <tr>
                 <td colspan="2" class="dashed-border">
-                    <p class="fw-bold" style="font-size: 16px">Payment-Type: {{$data->payment_type ? $data->payment_type : ''}}</p>
-                    <p class="fw-bold" style="font-size: 16px">Ledger Balance: {{$data->customer ? number_format($data->customer->due_payment) : ''}}</p>
+                    <p class="fw-bold" style="font-size: 16px">(نوع الدفع) Payment-Type: {{$data->payment_type ? $data->payment_type : ''}}</p>
+                    <p class="fw-bold" style="font-size: 16px">(رصيد الدفتر) Ledger Balance: {{$data->customer ? number_format($data->customer->due_payment) : ''}}</p>
                 </td>
             </tr>
 
             <!-- Footer -->
             <tr>
                 <td colspan="2" class="text-center ">
-                    <p style="font-size: 16px">Thank You For Shopping</p>
+                    <p style="font-size: 16px">(شكرا لك على التسوق) <br> Thank You For Shopping</p>
                 </td>
             </tr>
         </table>

@@ -53,7 +53,7 @@ class PaymentController extends Controller
     {
         $type = 0;
         //    dd($id);
-        $data = Payment::with(['saleInfo', 'customer'])->find($id);
+        $data = Payment::with(['saleInfo', 'customer','branch'])->find($id);
         $previous_route = url()->previous();
         return view('admin.sales_payment_list.print', compact('data','previous_route','type'));
     }
